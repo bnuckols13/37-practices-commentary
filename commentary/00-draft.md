@@ -1,12 +1,13 @@
 # Commentary — draft workspace
 
-**Series:** The 37 Practices of the Bodhisattvas (Ngulchu Thogmé), taught by **Khenpo Sherab Sangpo**
+**Series:** The 37 Practices of the Bodhisattvas (Ngulchu Thogmé)
 
 ## Transcripts
 
-**Playlist:** [YouTube — all 11 parts](https://www.youtube.com/playlist?list=PLaAW1H5vg2nHHpesQGHhUyu-l1Xa56nhf)
-
-Cleaned auto-caption text: [source/transcripts-playlist/](../source/transcripts-playlist/README.md)
+| Series | Playlist | Folder |
+|--------|----------|--------|
+| **Khenpo Sherab Sangpo** | [11 parts](https://www.youtube.com/playlist?list=PLaAW1H5vg2nHHpesQGHhUyu-l1Xa56nhf) | [transcripts-playlist/](../source/transcripts-playlist/README.md) |
+| **Garchen Rinpoche et al., Arizona 2020** | [7 sessions](https://www.youtube.com/playlist?list=PLcvNsUJcv64gOg5Yb-g0NH3-QTmV7Gxev) | [transcripts-garchen-arizona-2020/](../source/transcripts-garchen-arizona-2020/README.md) |
 
 ## Verse-by-verse
 

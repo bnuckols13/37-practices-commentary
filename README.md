@@ -14,6 +14,14 @@ Raw WebVTT from YouTube is also in that folder (`part-NN-VIDEOID.en.vtt`) if you
 
 Auto-captions mis-hear Tibetan names and terms—check against your root translation.
 
+### Garchen Rinpoche — Arizona 2020
+
+**Playlist:** [37 Practices of a Bodhisattva commentary by HE Garchen Rinpoche. Arizona, 2020](https://www.youtube.com/playlist?list=PLcvNsUJcv64gOg5Yb-g0NH3-QTmV7Gxev) (7 sessions, ~118k words — longer retreat-style recordings).
+
+Cleaned transcripts and index: [source/transcripts-garchen-arizona-2020/README.md](source/transcripts-garchen-arizona-2020/README.md) (`transcript-part-01-autocaption.txt` … `transcript-part-07-autocaption.txt`). WebVTT sources use the same `part-NN-…` naming.
+
+Some sessions are taught by **Drupon Rinchen Dorje** or **Khenpo Tenzin** (see titles in the index).
+
 ## Verse files (`commentary/verses/`)
 
 **Naming:** `verse-NN-short-slug.md` — two-digit number (`01`–`37`) plus a kebab-case hint. Titles are a common English gloss; align wording with your edition.
@@ -61,4 +69,4 @@ Auto-captions mis-hear Tibetan names and terms—check against your root transla
 ## Other notes
 
 - [commentary/00-draft.md](commentary/00-draft.md) — scratchpad / overview.
-- Workflow: keep `source/transcripts-playlist/*.txt` as reference; develop commentary in `commentary/verses/`. Add timestamps and part numbers in each verse file as you go.
+- Workflow: keep `source/transcripts-playlist/*.txt` and/or `source/transcripts-garchen-arizona-2020/*.txt` as reference; develop commentary in `commentary/verses/`. Add timestamps and session numbers in each verse file as you go.
