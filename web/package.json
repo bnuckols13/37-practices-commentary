@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "prebuild": "node scripts/generate-manifest.mjs",
+    "prebuild": "node -e \"const fs=require('fs');if(fs.existsSync('../../commentary/verses')){require('child_process').execSync('node scripts/generate-manifest.mjs',{stdio:'inherit'})}else{console.log('Source data not available — using committed manifest.json')}\"",
     "predev": "node scripts/generate-manifest.mjs",
     "dev": "next dev",
     "build": "next build",
