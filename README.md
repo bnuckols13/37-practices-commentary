@@ -2,21 +2,17 @@
 
 Personal project for verse-by-verse commentary based on the teaching series (Thogme Zangpo).
 
-## Transcripts (`source/`)
+## Transcripts (`source/transcripts-playlist/`)
 
-Use one file per video session. Name pattern:
+Full series by **Khenpo Sherab Sangpo** (Nyingma) on Ngulchu Thogmé’s *37 Practices of the Bodhisattvas*, [bodhicittasangha.org](https://bodhicittasangha.org).
 
-`transcript-partN-autocaption.txt`
+**Playlist:** [The 37 Practices of the Bodhisattvas](https://www.youtube.com/playlist?list=PLaAW1H5vg2nHHpesQGHhUyu-l1Xa56nhf) (11 parts, ~37k words total).
 
-| File | Video | Status |
-|------|--------|--------|
-| [source/transcript-part1-autocaption.txt](source/transcript-part1-autocaption.txt) | *(add URL)* | Placeholder |
-| [source/transcript-part2-autocaption.txt](source/transcript-part2-autocaption.txt) | [Part 2](https://youtu.be/avJCFFZCqzs) | Filled (auto-captions) |
-| [source/transcript-part3-plus-autocaption.txt](source/transcript-part3-plus-autocaption.txt) | *(optional)* | Placeholder |
+Machine-generated **English** captions were exported and cleaned into one `.txt` per part: `transcript-part-01-autocaption.txt` through `transcript-part-11-autocaption.txt`. Index with links and word counts: [source/transcripts-playlist/README.md](source/transcripts-playlist/README.md).
 
-For Part 4, 5, … duplicate the pattern: `transcript-part4-autocaption.txt`, etc.
+Raw WebVTT from YouTube is also in that folder (`part-NN-VIDEOID.en.vtt`) if you need timings.
 
-Auto-captions mis-hear Tibetan terms—check names and lines against your root translation.
+Auto-captions mis-hear Tibetan names and terms—check against your root translation.
 
 ## Verse files (`commentary/verses/`)
 
@@ -65,4 +61,4 @@ Auto-captions mis-hear Tibetan terms—check names and lines against your root t
 ## Other notes
 
 - [commentary/00-draft.md](commentary/00-draft.md) — scratchpad / overview.
-- Workflow: keep `source/*.txt` as reference; develop commentary in `commentary/verses/`. Add timestamps and part numbers in each verse file as you go.
+- Workflow: keep `source/transcripts-playlist/*.txt` as reference; develop commentary in `commentary/verses/`. Add timestamps and part numbers in each verse file as you go.
