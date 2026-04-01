@@ -2,7 +2,11 @@
 
 Personal project for verse-by-verse commentary based on the teaching series (Thogme Zangpo).
 
-## Transcripts (`source/transcripts-playlist/`)
+## Transcripts
+
+### Khenpo Sherab Sangpo — Bodhicitta Sangha
+
+**Folder:** [`source/transcripts-playlist/`](source/transcripts-playlist/)
 
 Full series by **Khenpo Sherab Sangpo** (Nyingma) on Ngulchu Thogmé’s *37 Practices of the Bodhisattvas*, [bodhicittasangha.org](https://bodhicittasangha.org).
 
