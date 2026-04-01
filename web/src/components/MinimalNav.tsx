@@ -29,14 +29,18 @@ export default function MinimalNav({ onSearchOpen }: { onSearchOpen: () => void 
 
   return (
     <>
-      {/* Persistent top nav — thin, not sticky */}
+      {/* Sticky top nav */}
       <header
         style={{
+          position: "sticky",
+          top: 0,
+          zIndex: 50,
           borderBottom: "1px solid var(--border-hairline)",
           padding: "0.875rem 1.5rem",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
+          background: "var(--bg)",
         }}
       >
         <Link
