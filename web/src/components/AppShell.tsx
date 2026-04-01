@@ -38,8 +38,8 @@ export default function AppShell({ children, corpus }: Props) {
 
   return (
     <>
-      {children}
       <MinimalNav onSearchOpen={() => setSearchOpen(true)} />
+      {children}
       <CmdKModal
         isOpen={searchOpen}
         onClose={() => setSearchOpen(false)}
