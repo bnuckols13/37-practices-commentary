@@ -215,7 +215,15 @@ export default function StructuralFrameworks() {
       {activeTab === "khenpo" && (
         <div>
           <PivotCard title="Three-part structure — Khenpo Sherab Sangpo">
-            Khenpo opens his 11-part teaching series by announcing an explicit three-part architecture before teaching a single verse. This is a deliberate lineage method — he notes his own teachers always give the summary first so the student can hold the map while walking the territory.
+            Khenpo opens his 11-part teaching series by announcing an explicit three-part architecture before teaching a single verse. This is a deliberate lineage method — he notes his own teachers always give the summary first so the student can hold the map while walking the territory. He situates the text immediately within the full Mahayana curriculum:
+            <BlockQuote>
+              "This text summarizes the entire bodhisattva path and offers excellent instructions for Mahayana practice."
+            </BlockQuote>
+            This claim establishes the stakes. The 37 verses are not a supplement to the Mahayana path — they <em style={{ color: "var(--ink)" }}>are</em> the path in compressed form. Khenpo adds a biographical note that reveals how foundational the text is in traditional Tibetan education:
+            <BlockQuote>
+              "I memorized this text when I was 11 years old."
+            </BlockQuote>
+            Memorized at 11 — before any of the commentaries were studied. The map precedes the territory. Students who grow up holding these 37 verses as a childhood memory encounter the long commentaries as elaborations of something already known in the body.
             <BlockQuote>
               "So it has three main principles. First, cultivating the motivation to follow the bodhisattva path. Second, engaging in the specific trainings of the bodhisattva path. And third, integrating those practices into your life."
             </BlockQuote>
@@ -381,6 +389,12 @@ export default function StructuralFrameworks() {
             Compared to Shantideva's <em>Bodhicaryavatara</em>, which gives full chapters to each paramita, the 37 Practices compresses each to a single verse. These are mnemonics for practitioners who already have the long-form teachings.
             <br /><br />
             <em style={{ color: "var(--ink)" }}>Generosity</em> (v25): give even your body &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>Ethics</em> (v26): without ethics, helping others is laughable &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>Patience</em> (v27): enemies are precious treasures &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>Diligence</em> (v28): even Hinayanists strive urgently &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>Meditation</em> (v29): insight needs samadhi &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>Wisdom</em> (v30): without prajna the other five don't reach buddhahood
+            <br /><br />
+            Khenpo offers a decisive reframe of the first paramita that changes how all six are understood:
+            <BlockQuote>
+              "The essence of the perfection of generosity is about realization of nonattachment."
+            </BlockQuote>
+            This reverses the conventional reading. Generosity is not primarily <em style={{ color: "var(--ink)" }}>giving</em> — it is the <em style={{ color: "var(--ink)" }}>dissolution of the grasper who clings</em>. When nonattachment is realized, generosity is what naturally flows. The perfection is not the act but the view behind it. This connects v25 directly to the wisdom of v22: paramitas held within non-dual awareness are not techniques — they are expressions of what is already present when self-grasping is released.
           </PivotCard>
 
           <PivotCard title="The wisdom verse (v30) as culmination — and the loop back to v22">
