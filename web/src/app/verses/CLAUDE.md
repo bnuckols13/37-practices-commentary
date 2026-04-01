@@ -7,6 +7,5 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #840 | 1:47 PM | 🔄 | Verse page visual redesign | ~447 |
-| #820 | 11:54 AM | 🟣 | Individual Verse Page with Search Integration | ~573 |
+| #845 | 1:50 PM | 🔄 | Verse list hover styling simplified | ~222 |
 </claude-mem-context>

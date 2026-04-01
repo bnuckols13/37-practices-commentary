@@ -1,11 +1,27 @@
 import Link from "next/link";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { getVerse, getVerses, GROUP_COLORS } from "@/lib/data";
+import { getVerses, getVerse } from "@/lib/data";
 import { notFound } from "next/navigation";
+import VisitMarker from "@/components/VisitMarker";
+import VerseColophon from "@/components/VerseColophon";
 
 export function generateStaticParams() {
   return getVerses().map((v) => ({ n: String(v.number) }));
+}
+
+const GROUP_COLORS: Record<string, string> = {
+  Foundation: "#4A5568",
+  Bodhicitta: "#744210",
+  "Adversity Training": "#7B341E",
+  "Working with Mind": "#44337A",
+  Emptiness: "#234E52",
+  "Six Perfections": "#1A4731",
+  "Daily Vigilance": "#3D3480",
+};
+
+function stripH1(content: string): string {
+  return content.replace(/^#\s+.+\n?/m, "").trim();
 }
 
 export default async function VersePage({
@@ -18,161 +34,224 @@ export default async function VersePage({
   const verse = getVerse(num);
   if (!verse) notFound();
 
-  const color = GROUP_COLORS[verse.group] || "var(--muted)";
-  const prev = num > 1 ? getVerse(num - 1) : null;
-  const next = num < 37 ? getVerse(num + 1) : null;
+  const allVerses = getVerses();
+  const prev = allVerses.find((v) => v.number === num - 1);
+  const next = allVerses.find((v) => v.number === num + 1);
 
-  // Extract content after the header (skip the template header lines)
-  const contentBody = verse.content
-    .split("\n")
-    .slice(4) // skip title + metadata lines
-    .join("\n")
-    .trim();
+  const groupColor = GROUP_COLORS[verse.group] || "var(--muted)";
+  const body = stripH1(verse.content);
 
   return (
-    <div>
-      {/* Breadcrumb */}
-      <div className="flex items-center gap-2 text-sm mb-6" style={{ color: "var(--muted)" }}>
-        <Link href="/verses" className="hover:underline">
-          Verses
-        </Link>
-        <span>/</span>
-        <span>Practice {verse.number}</span>
+    <div
+      style={{
+        position: "relative",
+        overflow: "hidden",
+        minHeight: "100vh",
+      }}
+    >
+      <div
+        className="ghosted-number"
+        style={{
+          top: "-0.15em",
+          right: "-0.05em",
+        }}
+        aria-hidden="true"
+      >
+        {verse.number}
       </div>
 
-      {/* Header */}
-      <div className="mb-8">
-        <div className="flex items-center gap-3 mb-3">
-          <span
-            className="w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold text-white"
-            style={{ background: color }}
+      <div style={{ height: "2px", background: groupColor, width: "100%" }} />
+
+      <div
+        style={{
+          position: "relative",
+          zIndex: 1,
+          maxWidth: "52rem",
+          margin: "0 auto",
+          padding: "2.5rem 1.5rem 2rem",
+        }}
+      >
+        <nav
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "0.75rem",
+            color: "var(--muted)",
+            marginBottom: "3rem",
+            display: "flex",
+            alignItems: "center",
+            gap: "0.5rem",
+          }}
+        >
+          <Link href="/verses" style={{ color: "var(--muted)", textDecoration: "none" }}>
+            Verses
+          </Link>
+          <span style={{ opacity: 0.4 }}>/</span>
+          <span>{verse.number}</span>
+        </nav>
+
+        <header style={{ textAlign: "center", paddingBottom: "2.5rem" }}>
+          <h1
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(1.75rem, 5vw, 3rem)",
+              fontWeight: 400,
+              fontStyle: "italic",
+              color: "var(--ink)",
+              lineHeight: 1.25,
+              marginBottom: "0.75rem",
+            }}
           >
-            {verse.number}
-          </span>
-          <div>
-            <h1 className="text-2xl font-bold">{verse.theme}</h1>
-            <span className="text-xs px-2 py-0.5 rounded-full" style={{ background: `${color}15`, color }}>
-              {verse.group}
-            </span>
+            {verse.theme}
+          </h1>
+          <p
+            className="small-caps"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.7rem",
+              color: "var(--muted)",
+              letterSpacing: "0.12em",
+            }}
+          >
+            Practice {verse.number} &middot; {verse.group}
+          </p>
+        </header>
+
+        <section
+          style={{
+            maxWidth: "36rem",
+            margin: "0 auto 1.5rem",
+            textAlign: "center",
+          }}
+        >
+          <p
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "clamp(1.1rem, 3vw, 1.4rem)",
+              fontStyle: "italic",
+              lineHeight: 1.75,
+              color: "var(--ink)",
+            }}
+          >
+            {verse.rootText}
+          </p>
+        </section>
+
+        <div
+          style={{
+            borderTop: "1px solid var(--border-hairline)",
+            maxWidth: "12rem",
+            margin: "2rem auto",
+          }}
+        />
+
+        <div style={{ maxWidth: "34rem", margin: "0 auto" }}>
+          {body ? (
+            <div className="prose">
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>{body}</ReactMarkdown>
+            </div>
+          ) : (
+            <p
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontStyle: "italic",
+                color: "var(--muted)",
+                textAlign: "center",
+                padding: "2rem 0",
+              }}
+            >
+              Commentary forthcoming.
+            </p>
+          )}
+        </div>
+
+        <VerseColophon />
+
+        <div
+          style={{
+            maxWidth: "34rem",
+            margin: "2rem auto 0",
+            paddingTop: "1.5rem",
+            borderTop: "1px solid var(--border-hairline)",
+          }}
+        >
+          <p
+            className="small-caps"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.65rem",
+              color: "var(--muted)",
+              letterSpacing: "0.1em",
+              marginBottom: "0.75rem",
+            }}
+          >
+            Search in Transcripts
+          </p>
+          <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem" }}>
+            {[verse.theme, verse.group, `practice ${verse.number}`].map((term) => (
+              <Link
+                key={term}
+                href={`/search?q=${encodeURIComponent(term)}`}
+                style={{
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "0.8125rem",
+                  color: "var(--muted)",
+                  textDecoration: "none",
+                  border: "1px solid var(--border)",
+                  borderRadius: "2px",
+                  padding: "2px 10px",
+                }}
+              >
+                {term}
+              </Link>
+            ))}
           </div>
         </div>
-      </div>
 
-      {/* Root text */}
-      <section
-        className="rounded-lg p-6 mb-8 border-l-4"
-        style={{ borderColor: color, background: "var(--card)" }}
-      >
-        <h2 className="text-xs font-semibold uppercase tracking-wide mb-3" style={{ color: "var(--muted)" }}>
-          Root Text
-        </h2>
-        <p className="text-lg leading-relaxed italic">{verse.rootText}</p>
-      </section>
-
-      {/* Commentary content from markdown */}
-      <section className="prose mb-8">
-        <h2>Commentary</h2>
-        {contentBody ? (
-          <ReactMarkdown remarkPlugins={[remarkGfm]}>{contentBody}</ReactMarkdown>
-        ) : (
-          <p style={{ color: "var(--muted)", fontStyle: "italic" }}>
-            No commentary written yet. Edit{" "}
-            <code className="text-xs">commentary/verses/{verse.file}</code> to add your notes.
-          </p>
-        )}
-      </section>
-
-      {/* Transcript search links */}
-      <section
-        className="rounded-lg p-5 mb-8 border"
-        style={{ borderColor: "var(--border)", background: "var(--card)" }}
-      >
-        <h2 className="text-sm font-semibold mb-3">Search Transcripts for This Practice</h2>
-        <div className="flex flex-wrap gap-2">
-          {getSearchTerms(verse).map((term) => (
+        <div
+          style={{
+            maxWidth: "34rem",
+            margin: "3rem auto 0",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            paddingTop: "1.5rem",
+            borderTop: "1px solid var(--border-hairline)",
+          }}
+        >
+          {prev ? (
             <Link
-              key={term}
-              href={`/search?q=${encodeURIComponent(term)}`}
-              className="px-3 py-1.5 rounded-full text-xs border hover:bg-amber-50 transition-colors"
-              style={{ borderColor: "var(--border)" }}
+              href={`/verses/${prev.number}`}
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "0.875rem",
+                color: "var(--muted)",
+                textDecoration: "none",
+              }}
             >
-              &ldquo;{term}&rdquo;
+              &larr; {prev.number}. {prev.theme}
             </Link>
-          ))}
+          ) : (
+            <span />
+          )}
+          {next ? (
+            <Link
+              href={`/verses/${next.number}`}
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "0.875rem",
+                color: "var(--muted)",
+                textDecoration: "none",
+              }}
+            >
+              {next.number}. {next.theme} &rarr;
+            </Link>
+          ) : (
+            <span />
+          )}
         </div>
-      </section>
-
-      {/* Navigation */}
-      <div className="flex justify-between items-center pt-4 border-t" style={{ borderColor: "var(--border)" }}>
-        {prev ? (
-          <Link href={`/verses/${prev.number}`} className="text-sm hover:underline" style={{ color: "var(--accent)" }}>
-            &larr; {prev.number}. {prev.theme}
-          </Link>
-        ) : (
-          <span />
-        )}
-        {next ? (
-          <Link href={`/verses/${next.number}`} className="text-sm hover:underline" style={{ color: "var(--accent)" }}>
-            {next.number}. {next.theme} &rarr;
-          </Link>
-        ) : (
-          <span />
-        )}
       </div>
+
+      <VisitMarker verseNumber={verse.number} />
     </div>
   );
-}
-
-function getSearchTerms(verse: { number: number; theme: string; rootText: string }): string[] {
-  const terms: string[] = [];
-
-  // Use the theme as a search term
-  terms.push(verse.theme.toLowerCase());
-
-  // Extract key phrases from root text
-  const keyPhrases: Record<number, string[]> = {
-    1: ["precious human", "leisure and fortune", "hearing pondering meditating"],
-    2: ["attachment", "hatred", "ignorance", "fatherland"],
-    3: ["secluded places", "disturbing emotions"],
-    4: ["impermanence", "letting go", "guesthouse of the body"],
-    5: ["evil companions", "three poisons"],
-    6: ["spiritual friends", "waxing moon"],
-    7: ["refuge", "Triple Gem"],
-    8: ["lower realms", "negative deeds"],
-    9: ["liberation", "dewdrop"],
-    10: ["bodhicitta", "mind of enlightenment", "sentient beings"],
-    11: ["exchange self", "altruistic mind", "tonglen"],
-    12: ["generosity", "steal", "dedicate"],
-    13: ["compassion", "negative deeds"],
-    14: ["slander", "offensive remarks", "loving mind"],
-    15: ["humiliation", "spiritual friend"],
-    16: ["betrayal", "ailing child"],
-    17: ["contempt", "pride", "guru"],
-    18: ["poverty", "illness", "discouragement"],
-    19: ["fame", "wealth", "unconceited"],
-    20: ["hatred", "love and compassion", "inner enemy"],
-    21: ["craving", "salt water", "attachment"],
-    22: ["mind's nature", "subject-object", "emptiness"],
-    23: ["rainbow", "clinging", "illusion"],
-    24: ["suffering", "illusory", "dream"],
-    25: ["generosity", "giving"],
-    26: ["ethical conduct", "ethics", "moral"],
-    27: ["patience", "hostility", "precious treasure"],
-    28: ["diligence", "effort"],
-    29: ["concentration", "tranquil abiding", "insight"],
-    30: ["wisdom", "three spheres", "skillful means"],
-    31: ["self-examination", "mistakes"],
-    32: ["faults", "criticizing", "Great Vehicle"],
-    33: ["gain and respect", "attachment"],
-    34: ["harsh speech", "harsh words"],
-    35: ["mindfulness", "antidote", "disturbing emotions"],
-    36: ["state of my mind", "awareness"],
-    37: ["dedication", "merit", "enlightenment"],
-  };
-
-  if (keyPhrases[verse.number]) {
-    terms.push(...keyPhrases[verse.number]);
-  }
-
-  return [...new Set(terms)].slice(0, 6);
 }

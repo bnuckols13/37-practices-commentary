@@ -28,45 +28,78 @@ export default async function TranscriptPartPage({
   const nextPart = series.parts.find((p) => p.part === partNum + 1);
 
   return (
-    <div>
-      {/* Breadcrumb */}
-      <div className="flex items-center gap-2 text-sm mb-6" style={{ color: "var(--muted)" }}>
-        <Link href="/transcripts" className="hover:underline">
+    <div style={{ padding: "2.5rem 1.5rem 6rem", maxWidth: "72rem", margin: "0 auto" }}>
+      <nav
+        style={{
+          fontFamily: "var(--font-serif)",
+          fontSize: "0.75rem",
+          color: "var(--muted)",
+          marginBottom: "2rem",
+          display: "flex",
+          alignItems: "center",
+          gap: "0.5rem",
+        }}
+      >
+        <Link href="/transcripts" style={{ color: "var(--muted)", textDecoration: "none" }}>
           Transcripts
         </Link>
-        <span>/</span>
+        <span style={{ opacity: 0.4 }}>/</span>
         <span>{series.label}</span>
-        <span>/</span>
+        <span style={{ opacity: 0.4 }}>/</span>
         <span>Part {part.part}</span>
-      </div>
+      </nav>
 
-      {/* Header */}
-      <div className="mb-6">
-        <h1 className="text-xl font-bold mb-2">{part.title}</h1>
-        <div className="flex items-center gap-4 text-sm" style={{ color: "var(--muted)" }}>
-          <span>{part.wordCount.toLocaleString()} words</span>
-          <span>&middot;</span>
-          <span>{part.cues.length} timestamped segments</span>
-        </div>
-      </div>
+      <header style={{ marginBottom: "2rem" }}>
+        <h1
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "clamp(1.4rem, 4vw, 2rem)",
+            fontWeight: 400,
+            fontStyle: "italic",
+            color: "var(--ink)",
+            marginBottom: "0.5rem",
+          }}
+        >
+          {part.title}
+        </h1>
+        <p
+          className="small-caps"
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "0.65rem",
+            color: "var(--muted)",
+            letterSpacing: "0.1em",
+          }}
+        >
+          {part.wordCount.toLocaleString()} words &middot; {part.cues.length} segments
+        </p>
+      </header>
 
-      {/* Transcript viewer with embedded YouTube */}
       <TranscriptViewer
         content={part.content}
         youtubeId={part.youtubeId}
         cues={part.cues}
       />
 
-      {/* Navigation */}
       <div
-        className="flex justify-between items-center pt-6 mt-8 border-t"
-        style={{ borderColor: "var(--border)" }}
+        style={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          paddingTop: "1.5rem",
+          marginTop: "3rem",
+          borderTop: "1px solid var(--border-hairline)",
+        }}
       >
         {prevPart ? (
           <Link
             href={`/transcripts/${seriesId}/${prevPart.part}`}
-            className="text-sm hover:underline"
-            style={{ color: "var(--accent)" }}
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.875rem",
+              color: "var(--muted)",
+              textDecoration: "none",
+            }}
           >
             &larr; Part {prevPart.part}
           </Link>
@@ -76,8 +109,12 @@ export default async function TranscriptPartPage({
         {nextPart ? (
           <Link
             href={`/transcripts/${seriesId}/${nextPart.part}`}
-            className="text-sm hover:underline"
-            style={{ color: "var(--accent)" }}
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.875rem",
+              color: "var(--muted)",
+              textDecoration: "none",
+            }}
           >
             Part {nextPart.part} &rarr;
           </Link>

@@ -2,118 +2,130 @@ import Link from "next/link";
 
 export default function ToolkitPage() {
   return (
-    <div className="prose" style={{ maxWidth: "70ch" }}>
-      <h1>Analytical Meditation Toolkit</h1>
-      <p style={{ color: "var(--muted)" }}>
-        A systematic approach to deep study and novel discovery within the 37 Practices,
-        integrating insights from six major commentators.
-      </p>
+    <div style={{ maxWidth: "40rem", margin: "0 auto", padding: "3rem 1.5rem 6rem" }}>
+      <div className="prose">
+        <h1
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontWeight: 400,
+            fontStyle: "italic",
+            fontSize: "clamp(1.75rem, 5vw, 2.5rem)",
+            marginBottom: "1rem",
+          }}
+        >
+          Analytical Meditation Toolkit
+        </h1>
+        <p style={{ color: "var(--muted)" }}>
+          A systematic approach to deep study and novel discovery within the 37 Practices,
+          integrating insights from six major commentators.
+        </p>
 
-      <hr style={{ borderColor: "var(--border)", margin: "2rem 0" }} />
+        <hr style={{ borderColor: "var(--border-hairline)", margin: "2rem 0" }} />
 
-      <h2>Layer 1: Single-Verse Deep Dive Protocol</h2>
-      <p>For each of the 37 practices, work through these 7 angles:</p>
-      <ol>
-        <li>
-          <strong>Literal</strong> &mdash; What does the verse actually say? What situation does it
-          describe?
-        </li>
-        <li>
-          <strong>Psychological</strong> &mdash; What mental pattern is being addressed? What
-          cognitive distortion is being corrected?
-        </li>
-        <li>
-          <strong>Relational</strong> &mdash; How does this practice change how you relate to
-          others?
-        </li>
-        <li>
-          <strong>Somatic</strong> &mdash; Where do you feel this practice in the body? What does
-          the emotion it addresses feel like physically?
-        </li>
-        <li>
-          <strong>Shadow</strong> &mdash; What part of you resists this practice? What would you
-          lose by adopting it fully?
-        </li>
-        <li>
-          <strong>Cross-commentary</strong> &mdash; How do the commentators differ on this verse?
-          Use{" "}
-          <Link href="/search" style={{ color: "var(--accent)" }}>
-            search
+        <h2>Layer 1: Single-Verse Deep Dive Protocol</h2>
+        <p>For each of the 37 practices, work through these 7 angles:</p>
+        <ol>
+          <li>
+            <strong>Literal</strong> &mdash; What does the verse actually say? What situation does it
+            describe?
+          </li>
+          <li>
+            <strong>Psychological</strong> &mdash; What mental pattern is being addressed? What
+            cognitive distortion is being corrected?
+          </li>
+          <li>
+            <strong>Relational</strong> &mdash; How does this practice change how you relate to
+            others?
+          </li>
+          <li>
+            <strong>Somatic</strong> &mdash; Where do you feel this practice in the body? What does
+            the emotion it addresses feel like physically?
+          </li>
+          <li>
+            <strong>Shadow</strong> &mdash; What part of you resists this practice? What would you
+            lose by adopting it fully?
+          </li>
+          <li>
+            <strong>Cross-commentary</strong> &mdash; How do the commentators differ on this verse?
+            Use{" "}
+            <Link href="/search" style={{ color: "var(--accent)" }}>
+              search
+            </Link>{" "}
+            to find each teacher&apos;s take.
+          </li>
+          <li>
+            <strong>Novel application</strong> &mdash; Where does this practice apply in your life
+            right now in a way no commentator has described?
+          </li>
+        </ol>
+
+        <hr style={{ borderColor: "var(--border-hairline)", margin: "2rem 0" }} />
+
+        <h2>Layer 2: Structural Analysis Meditations</h2>
+        <p>These are meditations on the <em>relationships between</em> practices:</p>
+
+        <h3>
+          The Escalation Sequence (
+          <Link href="/verses?group=Adversity+Training" style={{ color: "var(--accent)" }}>
+            Practices 12&ndash;18
+          </Link>
+          )
+        </h3>
+        <p>
+          Each verse presents a worse situation than the last. Meditate on: what is the pattern? Why
+          this order? What breaks in you as you move from &ldquo;robbed&rdquo; to
+          &ldquo;beheaded&rdquo; to &ldquo;slandered&rdquo; to &ldquo;betrayed by your own
+          child&rdquo;?
+        </p>
+
+        <h3>
+          The Twin Dangers (
+          <Link href="/verses/18" style={{ color: "var(--accent)" }}>
+            18
           </Link>{" "}
-          to find each teacher&apos;s take.
-        </li>
-        <li>
-          <strong>Novel application</strong> &mdash; Where does this practice apply in your life
-          right now in a way no commentator has described?
-        </li>
-      </ol>
+          &amp;{" "}
+          <Link href="/verses/19" style={{ color: "var(--accent)" }}>
+            19
+          </Link>
+          )
+        </h3>
+        <p>
+          Poverty/despair and fame/wealth are presented as equally dangerous. Meditate on: which is
+          YOUR greater danger? Which would actually destroy your practice faster?
+        </p>
 
-      <hr style={{ borderColor: "var(--border)", margin: "2rem 0" }} />
+        <h3>
+          The Bridge Verse (
+          <Link href="/verses/21" style={{ color: "var(--accent)" }}>
+            Practice 21
+          </Link>
+          )
+        </h3>
+        <p>
+          Salt water. This is the last &ldquo;relative&rdquo; practice before emptiness teachings
+          begin. Why does Tokme Zangpo place craving here, as the gateway to emptiness? What does
+          craving have to do with the nature of mind?
+        </p>
 
-      <h2>Layer 2: Structural Analysis Meditations</h2>
-      <p>These are meditations on the <em>relationships between</em> practices:</p>
+        <h3>
+          The Paramita Sequence (
+          <Link href="/verses?group=Six+Perfections" style={{ color: "var(--accent)" }}>
+            Practices 25&ndash;30
+          </Link>
+          )
+        </h3>
+        <p>
+          Why does he say generosity requires giving &ldquo;without hope of karmic results&rdquo;?
+          This is radical &mdash; it negates even spiritual materialism.
+        </p>
 
-      <h3>
-        The Escalation Sequence (
-        <Link href="/verses?group=Adversity+Training" style={{ color: "var(--accent)" }}>
-          Practices 12&ndash;18
-        </Link>
-        )
-      </h3>
-      <p>
-        Each verse presents a worse situation than the last. Meditate on: what is the pattern? Why
-        this order? What breaks in you as you move from &ldquo;robbed&rdquo; to
-        &ldquo;beheaded&rdquo; to &ldquo;slandered&rdquo; to &ldquo;betrayed by your own
-        child&rdquo;?
-      </p>
+        <hr style={{ borderColor: "var(--border-hairline)", margin: "2rem 0" }} />
 
-      <h3>
-        The Twin Dangers (
-        <Link href="/verses/18" style={{ color: "var(--accent)" }}>
-          18
-        </Link>{" "}
-        &amp;{" "}
-        <Link href="/verses/19" style={{ color: "var(--accent)" }}>
-          19
-        </Link>
-        )
-      </h3>
-      <p>
-        Poverty/despair and fame/wealth are presented as equally dangerous. Meditate on: which is
-        YOUR greater danger? Which would actually destroy your practice faster?
-      </p>
+        <h2>Layer 3: Cross-Commentary Inquiry Questions</h2>
+        <p>Questions designed to generate novel insight by holding multiple commentators in tension:</p>
+      </div>
 
-      <h3>
-        The Bridge Verse (
-        <Link href="/verses/21" style={{ color: "var(--accent)" }}>
-          Practice 21
-        </Link>
-        )
-      </h3>
-      <p>
-        Salt water. This is the last &ldquo;relative&rdquo; practice before emptiness teachings
-        begin. Why does Tokme Zangpo place craving here, as the gateway to emptiness? What does
-        craving have to do with the nature of mind?
-      </p>
-
-      <h3>
-        The Paramita Sequence (
-        <Link href="/verses?group=Six+Perfections" style={{ color: "var(--accent)" }}>
-          Practices 25&ndash;30
-        </Link>
-        )
-      </h3>
-      <p>
-        Why does he say generosity requires giving &ldquo;without hope of karmic results&rdquo;?
-        This is radical &mdash; it negates even spiritual materialism.
-      </p>
-
-      <hr style={{ borderColor: "var(--border)", margin: "2rem 0" }} />
-
-      <h2>Layer 3: Cross-Commentary Inquiry Questions</h2>
-      <p>Questions designed to generate novel insight by holding multiple commentators in tension:</p>
-
-      <div className="space-y-4">
+      <div style={{ marginTop: "1.5rem" }}>
         <InquiryCard number={1}>
           <Link href="/verses/11" style={{ color: "var(--accent)" }}>Practice 11</Link> says all
           suffering comes from self-cherishing.{" "}
@@ -163,11 +175,12 @@ export default function ToolkitPage() {
         </InquiryCard>
       </div>
 
-      <hr style={{ borderColor: "var(--border)", margin: "2rem 0" }} />
+      <div className="prose" style={{ marginTop: "2rem" }}>
+        <hr style={{ borderColor: "var(--border-hairline)", margin: "2rem 0" }} />
+        <h2>Layer 4: The 7-Day Intensive Cycle</h2>
+      </div>
 
-      <h2>Layer 4: The 7-Day Intensive Cycle</h2>
-
-      <div className="space-y-3">
+      <div style={{ marginTop: "1.5rem" }}>
         <DayCard day={1} title="Foundation" practices="1-9">
           Read all nine. Journal: What am I taking for granted about this human life? Where am I
           wasting it?
@@ -198,41 +211,41 @@ export default function ToolkitPage() {
         </DayCard>
       </div>
 
-      <hr style={{ borderColor: "var(--border)", margin: "2rem 0" }} />
+      <div className="prose" style={{ marginTop: "2rem" }}>
+        <hr style={{ borderColor: "var(--border-hairline)", margin: "2rem 0" }} />
+        <h2>Layer 5: The Novel Discovery Engine</h2>
+        <p>To generate genuinely new insights that can help others:</p>
+        <ol>
+          <li>
+            <strong>Comparative tension:</strong> Find two practices that seem to contradict each
+            other. Sit with the contradiction until a third perspective emerges that holds both.
+          </li>
+          <li>
+            <strong>Modern application mapping:</strong> What is the 2026 version of each situation?
+            (e.g., Practice 14 about slander &mdash; what about social media? Practice 2 about homeland
+            &mdash; what about digital spaces you&apos;re attached to?)
+          </li>
+          <li>
+            <strong>Cross-tradition bridges:</strong> How does each practice relate to concepts in
+            other traditions? (e.g., Practice 11&apos;s exchange and relational psychotherapy&apos;s
+            intersubjectivity)
+          </li>
+          <li>
+            <strong>The body test:</strong> Which practices produce physical sensation when you read
+            them? The body&apos;s response often reveals where the deepest work lies.
+          </li>
+          <li>
+            <strong>The reversal test:</strong> What would the OPPOSITE of each practice look like?
+            Sometimes seeing the anti-practice clarifies what the practice is really asking.
+          </li>
+        </ol>
 
-      <h2>Layer 5: The Novel Discovery Engine</h2>
-      <p>To generate genuinely new insights that can help others:</p>
-      <ol>
-        <li>
-          <strong>Comparative tension:</strong> Find two practices that seem to contradict each
-          other. Sit with the contradiction until a third perspective emerges that holds both.
-        </li>
-        <li>
-          <strong>Modern application mapping:</strong> What is the 2026 version of each situation?
-          (e.g., Practice 14 about slander &mdash; what about social media? Practice 2 about homeland
-          &mdash; what about digital spaces you&apos;re attached to?)
-        </li>
-        <li>
-          <strong>Cross-tradition bridges:</strong> How does each practice relate to concepts in
-          other traditions? (e.g., Practice 11&apos;s exchange and relational psychotherapy&apos;s
-          intersubjectivity)
-        </li>
-        <li>
-          <strong>The body test:</strong> Which practices produce physical sensation when you read
-          them? The body&apos;s response often reveals where the deepest work lies.
-        </li>
-        <li>
-          <strong>The reversal test:</strong> What would the OPPOSITE of each practice look like?
-          Sometimes seeing the anti-practice clarifies what the practice is really asking.
-        </li>
-      </ol>
+        <hr style={{ borderColor: "var(--border-hairline)", margin: "2rem 0" }} />
+        <h2>Six Commentators, Six Lenses</h2>
+        <p>Each commentator brings a distinct interpretive framework:</p>
+      </div>
 
-      <hr style={{ borderColor: "var(--border)", margin: "2rem 0" }} />
-
-      <h2>Six Commentators, Six Lenses</h2>
-      <p>Each commentator brings a distinct interpretive framework:</p>
-
-      <div className="space-y-3">
+      <div style={{ marginTop: "1.5rem" }}>
         <CommentatorCard
           name="HH Dalai Lama"
           lens="Compassion-as-practice"
@@ -277,18 +290,39 @@ function InquiryCard({
 }) {
   return (
     <div
-      className="rounded-lg p-4 border"
-      style={{ borderColor: "var(--border)", background: "var(--card)" }}
+      style={{
+        borderTop: "1px solid var(--border-hairline)",
+        paddingTop: "1.5rem",
+        paddingBottom: "1.5rem",
+        display: "flex",
+        gap: "1.25rem",
+        alignItems: "baseline",
+      }}
     >
-      <div className="flex items-start gap-3">
-        <span
-          className="flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white"
-          style={{ background: "var(--group-emptiness)" }}
-        >
-          {number}
-        </span>
-        <p className="text-sm leading-relaxed m-0">{children}</p>
-      </div>
+      <span
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "0.65rem",
+          color: "var(--muted)",
+          opacity: 0.5,
+          minWidth: "1.5rem",
+          textAlign: "right",
+          flexShrink: 0,
+        }}
+      >
+        {String(number).padStart(2, "0")}
+      </span>
+      <p
+        style={{
+          fontFamily: "var(--font-serif)",
+          fontSize: "1rem",
+          lineHeight: 1.75,
+          color: "var(--ink)",
+          margin: 0,
+        }}
+      >
+        {children}
+      </p>
     </div>
   );
 }
@@ -306,24 +340,64 @@ function DayCard({
 }) {
   return (
     <div
-      className="rounded-lg p-4 border"
-      style={{ borderColor: "var(--border)", background: "var(--card)" }}
+      style={{
+        borderTop: "1px solid var(--border-hairline)",
+        paddingTop: "1.5rem",
+        paddingBottom: "1.5rem",
+        display: "flex",
+        gap: "1.25rem",
+      }}
     >
-      <div className="flex items-center gap-2 mb-2">
-        <span
-          className="w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold text-white"
-          style={{ background: "var(--accent)" }}
+      <span
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontSize: "0.65rem",
+          color: "var(--muted)",
+          opacity: 0.5,
+          minWidth: "1.5rem",
+          textAlign: "right",
+          flexShrink: 0,
+          paddingTop: "0.15rem",
+        }}
+      >
+        {String(day).padStart(2, "0")}
+      </span>
+      <div>
+        <div style={{ display: "flex", alignItems: "baseline", gap: "0.75rem", marginBottom: "0.4rem" }}>
+          <span
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "1rem",
+              fontWeight: 500,
+              color: "var(--ink)",
+            }}
+          >
+            {title}
+          </span>
+          <span
+            className="small-caps"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.65rem",
+              color: "var(--muted)",
+              letterSpacing: "0.08em",
+            }}
+          >
+            Practices {practices}
+          </span>
+        </div>
+        <p
+          style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "0.9375rem",
+            lineHeight: 1.75,
+            color: "var(--muted)",
+            margin: 0,
+          }}
         >
-          {day}
-        </span>
-        <span className="font-semibold text-sm">{title}</span>
-        <span className="text-xs" style={{ color: "var(--muted)" }}>
-          Practices {practices}
-        </span>
+          {children}
+        </p>
       </div>
-      <p className="text-sm m-0" style={{ color: "var(--muted)" }}>
-        {children}
-      </p>
     </div>
   );
 }
@@ -339,14 +413,44 @@ function CommentatorCard({
 }) {
   return (
     <div
-      className="rounded-lg p-4 border"
-      style={{ borderColor: "var(--border)", background: "var(--card)" }}
+      style={{
+        borderTop: "1px solid var(--border-hairline)",
+        paddingTop: "1.25rem",
+        paddingBottom: "1.25rem",
+      }}
     >
-      <div className="font-semibold text-sm">{name}</div>
-      <div className="text-xs mb-1" style={{ color: "var(--accent)" }}>
+      <div
+        style={{
+          fontFamily: "var(--font-serif)",
+          fontSize: "1rem",
+          fontWeight: 500,
+          color: "var(--ink)",
+          marginBottom: "0.15rem",
+        }}
+      >
+        {name}
+      </div>
+      <div
+        className="small-caps"
+        style={{
+          fontFamily: "var(--font-serif)",
+          fontSize: "0.65rem",
+          color: "var(--accent)",
+          letterSpacing: "0.08em",
+          marginBottom: "0.4rem",
+        }}
+      >
         {lens}
       </div>
-      <p className="text-xs m-0" style={{ color: "var(--muted)" }}>
+      <p
+        style={{
+          fontFamily: "var(--font-serif)",
+          fontSize: "0.875rem",
+          lineHeight: 1.7,
+          color: "var(--muted)",
+          margin: 0,
+        }}
+      >
         {unique}
       </p>
     </div>

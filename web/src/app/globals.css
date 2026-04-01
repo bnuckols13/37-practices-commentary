@@ -1,57 +1,102 @@
 @import "tailwindcss";
 
 :root {
-  --background: #faf8f5;
-  --foreground: #1a1a1a;
-  --accent: #8b6914;
-  --accent-light: #d4a843;
-  --muted: #6b6b6b;
-  --border: #e5e0d8;
-  --card: #ffffff;
-  --card-hover: #fdf8f0;
-  --group-foundation: #2563eb;
-  --group-bodhicitta: #dc2626;
-  --group-adversity: #d97706;
-  --group-mind: #7c3aed;
-  --group-emptiness: #0891b2;
-  --group-paramitas: #059669;
-  --group-vigilance: #6366f1;
+  --bg: #FEFEF9;
+  --ink: #1C1811;
+  --muted: #7A7060;
+  --accent: #8B4513;
+  --border: #E8E2D9;
+  --border-hairline: #D4CCB8;
+  --card: #F8F4ED;
+  --font-serif: var(--font-cormorant);
+  --font-mono: var(--font-dm-mono);
+
+  --group-foundation: #4A5568;
+  --group-bodhicitta: #744210;
+  --group-adversity: #7B341E;
+  --group-mind: #44337A;
+  --group-emptiness: #234E52;
+  --group-paramitas: #1A4731;
+  --group-vigilance: #3D3480;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-bg: var(--bg);
+  --color-ink: var(--ink);
+  --color-accent: var(--accent);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: var(--font-sans), system-ui, sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-serif), Georgia, serif;
 }
 
 .prose {
-  max-width: 65ch;
-  line-height: 1.75;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: 1.0625rem;
+  line-height: 1.85;
+  color: var(--ink);
+  max-width: 540px;
 }
-
-.prose h1 { font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; }
-.prose h2 { font-size: 1.25rem; font-weight: 600; margin-top: 2rem; margin-bottom: 0.75rem; color: var(--accent); }
-.prose h3 { font-size: 1.1rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; }
-.prose p { margin-bottom: 1rem; }
+.prose h1 { font-size: 1.5rem; font-weight: 400; font-style: italic; margin-bottom: 1.5rem; }
+.prose h2 {
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-variant: small-caps;
+  margin-top: 3rem;
+  margin-bottom: 1rem;
+  color: var(--muted);
+}
+.prose h3 { font-size: 1.1rem; font-weight: 500; margin-top: 2rem; margin-bottom: 0.5rem; }
+.prose p { margin-bottom: 1.25rem; }
 .prose ul, .prose ol { margin-bottom: 1rem; padding-left: 1.5rem; }
 .prose li { margin-bottom: 0.25rem; }
 .prose blockquote {
-  border-left: 3px solid var(--accent-light);
-  padding-left: 1rem;
-  margin: 1rem 0;
-  color: var(--muted);
+  border-left: 1px solid var(--border-hairline);
+  padding-left: 1.5rem;
+  margin: 2rem 0;
   font-style: italic;
+  color: var(--muted);
 }
 
 mark {
-  background: #fef08a;
-  padding: 0.1em 0.2em;
-  border-radius: 2px;
+  background: rgba(139, 69, 19, 0.12);
+  color: inherit;
+  border-radius: 1px;
+  padding: 0.05em 0.15em;
+}
+
+.font-serif { font-family: var(--font-serif), Georgia, serif; }
+.font-mono  { font-family: var(--font-mono), monospace; }
+
+.small-caps {
+  font-variant: small-caps;
+  letter-spacing: 0.08em;
+}
+
+.hover-accent {
+  color: var(--ink);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+.hover-accent:hover {
+  color: var(--accent);
+}
+
+.ghosted-number {
+  position: absolute;
+  font-family: var(--font-serif), Georgia, serif;
+  font-size: clamp(120px, 18vw, 200px);
+  font-weight: 700;
+  color: var(--ink);
+  opacity: 0.035;
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  z-index: 0;
 }

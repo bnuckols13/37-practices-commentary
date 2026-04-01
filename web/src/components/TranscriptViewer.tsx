@@ -17,30 +17,35 @@ function formatTime(seconds: number): string {
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
   const s = seconds % 60;
-  if (h > 0) return `${h}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
+  if (h > 0)
+    return `${h}:${String(m).padStart(2, "0")}:${String(s).padStart(2, "0")}`;
   return `${m}:${String(s).padStart(2, "0")}`;
 }
 
-export default function TranscriptViewer({ content, youtubeId, cues = [] }: Props) {
+function escapeRegex(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
+type VideoMode = "side" | "pip" | "hidden";
+
+export default function TranscriptViewer({
+  content,
+  youtubeId,
+  cues = [],
+}: Props) {
   const [query, setQuery] = useState("");
-  const [videoMode, setVideoMode] = useState<"hidden" | "top" | "pip">(
-    youtubeId ? "top" : "hidden"
+  const [videoMode, setVideoMode] = useState<VideoMode>(
+    youtubeId ? "side" : "hidden"
   );
   const [activeCueIdx, setActiveCueIdx] = useState<number | null>(null);
   const iframeRef = useRef<HTMLIFrameElement>(null);
-  const transcriptRef = useRef<HTMLDivElement>(null);
 
   const hasCues = cues.length > 0;
   const hasVideo = !!youtubeId;
 
-  // Use cues for display if available, otherwise fall back to paragraph splitting
   const segments = useMemo(() => {
     if (hasCues) {
-      return cues.map((c, i) => ({
-        id: i,
-        time: c.time,
-        text: c.text,
-      }));
+      return cues.map((c, i) => ({ id: i, time: c.time, text: c.text }));
     }
     return content
       .split(/\n\n+/)
@@ -52,8 +57,8 @@ export default function TranscriptViewer({ content, youtubeId, cues = [] }: Prop
     if (!query || query.length < 2) return 0;
     const re = new RegExp(escapeRegex(query), "gi");
     return segments.reduce((count, s) => {
-      const matches = s.text.match(re);
-      return count + (matches ? matches.length : 0);
+      const m = s.text.match(re);
+      return count + (m ? m.length : 0);
     }, 0);
   }, [segments, query]);
 
@@ -61,21 +66,12 @@ export default function TranscriptViewer({ content, youtubeId, cues = [] }: Prop
     (seconds: number, cueIdx: number) => {
       setActiveCueIdx(cueIdx);
       if (iframeRef.current && youtubeId) {
-        // Use the YouTube iframe API postMessage
         iframeRef.current.contentWindow?.postMessage(
-          JSON.stringify({
-            event: "command",
-            func: "seekTo",
-            args: [seconds, true],
-          }),
+          JSON.stringify({ event: "command", func: "seekTo", args: [seconds, true] }),
           "*"
         );
         iframeRef.current.contentWindow?.postMessage(
-          JSON.stringify({
-            event: "command",
-            func: "playVideo",
-            args: [],
-          }),
+          JSON.stringify({ event: "command", func: "playVideo", args: [] }),
           "*"
         );
       }
@@ -83,13 +79,10 @@ export default function TranscriptViewer({ content, youtubeId, cues = [] }: Prop
     [youtubeId]
   );
 
-  // Scroll active cue into view
   useEffect(() => {
     if (activeCueIdx !== null) {
       const el = document.getElementById(`cue-${activeCueIdx}`);
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
+      if (el) el.scrollIntoView({ behavior: "smooth", block: "center" });
     }
   }, [activeCueIdx]);
 
@@ -97,107 +90,76 @@ export default function TranscriptViewer({ content, youtubeId, cues = [] }: Prop
     ? `https://www.youtube.com/embed/${youtubeId}?enablejsapi=1&rel=0&modestbranding=1`
     : "";
 
-  return (
+  const transcriptContent = (
     <div>
-      {/* Video controls */}
-      {hasVideo && (
-        <div className="flex items-center gap-2 mb-4">
-          <span className="text-xs font-medium" style={{ color: "var(--muted)" }}>
-            Video:
-          </span>
-          {(["top", "pip", "hidden"] as const).map((mode) => (
-            <button
-              key={mode}
-              onClick={() => setVideoMode(mode)}
-              className="px-3 py-1 rounded-full text-xs border cursor-pointer transition-colors"
-              style={{
-                borderColor: videoMode === mode ? "var(--accent)" : "var(--border)",
-                background: videoMode === mode ? "var(--accent)" : "transparent",
-                color: videoMode === mode ? "white" : "var(--muted)",
-              }}
-            >
-              {mode === "top" ? "Embedded" : mode === "pip" ? "Floating" : "Hidden"}
-            </button>
-          ))}
-          {hasCues && (
-            <span className="text-xs ml-auto" style={{ color: "var(--muted)" }}>
-              Click any timestamp to seek
-            </span>
-          )}
-        </div>
-      )}
-
-      {/* YouTube embed — top mode */}
-      {hasVideo && videoMode === "top" && (
-        <div className="mb-6 rounded-lg overflow-hidden border" style={{ borderColor: "var(--border)" }}>
-          <div className="relative w-full" style={{ paddingBottom: "56.25%" }}>
-            <iframe
-              ref={iframeRef}
-              src={embedUrl}
-              className="absolute inset-0 w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title="Teaching video"
-            />
-          </div>
-        </div>
-      )}
-
-      {/* YouTube embed — PiP floating mode */}
-      {hasVideo && videoMode === "pip" && (
-        <div
-          className="fixed bottom-4 right-4 z-50 rounded-lg overflow-hidden shadow-2xl border"
-          style={{ width: 400, borderColor: "var(--border)" }}
-        >
-          <div className="relative" style={{ paddingBottom: "56.25%" }}>
-            <iframe
-              ref={iframeRef}
-              src={embedUrl}
-              className="absolute inset-0 w-full h-full"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-              title="Teaching video"
-            />
-          </div>
-          <button
-            onClick={() => setVideoMode("hidden")}
-            className="absolute top-1 right-1 w-6 h-6 rounded-full flex items-center justify-center text-xs cursor-pointer"
-            style={{ background: "rgba(0,0,0,0.6)", color: "white" }}
-          >
-            &times;
-          </button>
-        </div>
-      )}
-
-      {/* Search bar */}
-      <div className="sticky top-12 z-10 py-3" style={{ background: "var(--background)" }}>
-        <div className="flex items-center gap-3">
+      <div
+        className="sticky"
+        style={{ top: 0, zIndex: 10, padding: "0.75rem 0", background: "var(--bg)" }}
+      >
+        <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <input
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search within this transcript..."
-            className="flex-1 px-4 py-2 rounded-lg border text-sm"
+            placeholder="Search this transcript…"
             style={{
-              borderColor: "var(--border)",
-              background: "var(--card)",
+              flex: 1,
+              padding: "8px 0",
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.9375rem",
+              border: "none",
+              borderBottom: "1px solid var(--border)",
+              outline: "none",
+              background: "transparent",
+              color: "var(--ink)",
             }}
           />
           {query.length >= 2 && (
-            <span className="text-xs flex-shrink-0" style={{ color: "var(--muted)" }}>
+            <span
+              style={{
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.65rem",
+                color: "var(--muted)",
+                flexShrink: 0,
+              }}
+            >
               {matchCount} match{matchCount !== 1 ? "es" : ""}
             </span>
           )}
         </div>
       </div>
 
-      {/* Transcript segments */}
-      <div className="mt-4 space-y-1" ref={transcriptRef}>
+      {hasVideo && videoMode !== "side" && (
+        <div style={{ marginBottom: "1rem", display: "flex", gap: "1rem" }}>
+          {(["side", "pip", "hidden"] as VideoMode[]).map((mode) => (
+            <button
+              key={mode}
+              onClick={() => setVideoMode(mode)}
+              className="small-caps"
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontSize: "0.65rem",
+                letterSpacing: "0.08em",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                color: videoMode === mode ? "var(--accent)" : "var(--muted)",
+                padding: 0,
+                textDecoration: videoMode === mode ? "underline" : "none",
+                textUnderlineOffset: "3px",
+              }}
+            >
+              {mode === "side" ? "Side" : mode === "pip" ? "Float" : "Hidden"}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div style={{ marginTop: "1rem" }}>
         {segments.map((seg) => {
           const isActive = activeCueIdx === seg.id;
           const hasTimestamp = seg.time >= 0;
 
-          // Search filtering
           if (query.length >= 2) {
             const re = new RegExp(`(${escapeRegex(query)})`, "gi");
             const matches = re.test(seg.text);
@@ -207,14 +169,31 @@ export default function TranscriptViewer({ content, youtubeId, cues = [] }: Prop
                 <div
                   key={seg.id}
                   id={`cue-${seg.id}`}
-                  className="flex gap-3 py-1.5 opacity-20"
+                  style={{
+                    display: "flex",
+                    gap: "1rem",
+                    padding: "0.375rem 0",
+                    opacity: 0.18,
+                  }}
                 >
                   {hasTimestamp && (
-                    <span className="flex-shrink-0 w-14 text-xs pt-0.5 text-right" style={{ color: "var(--muted)" }}>
+                    <span
+                      style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.65rem",
+                        color: "var(--muted)",
+                        flexShrink: 0,
+                        minWidth: "3rem",
+                        textAlign: "right",
+                        paddingTop: "0.2rem",
+                      }}
+                    >
                       {formatTime(seg.time)}
                     </span>
                   )}
-                  <p className="text-sm leading-relaxed m-0">{seg.text}</p>
+                  <p style={{ fontFamily: "var(--font-serif)", fontSize: "1rem", lineHeight: 1.75, margin: 0 }}>
+                    {seg.text}
+                  </p>
                 </div>
               );
             }
@@ -224,62 +203,212 @@ export default function TranscriptViewer({ content, youtubeId, cues = [] }: Prop
               <div
                 key={seg.id}
                 id={`cue-${seg.id}`}
-                className="flex gap-3 py-1.5 rounded-lg px-2 -mx-2"
                 style={{
-                  background: isActive ? "var(--card-hover)" : undefined,
+                  display: "flex",
+                  gap: "1rem",
+                  padding: "0.375rem 0.5rem",
+                  marginLeft: "-0.5rem",
+                  marginRight: "-0.5rem",
+                  background: isActive ? "var(--card)" : undefined,
+                  borderRadius: "2px",
                 }}
               >
                 {hasTimestamp && (
                   <button
                     onClick={() => seekTo(seg.time, seg.id)}
-                    className="flex-shrink-0 w-14 text-xs pt-0.5 text-right cursor-pointer hover:underline font-mono"
-                    style={{ color: "var(--accent)", background: "none", border: "none" }}
+                    style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.65rem",
+                      color: "var(--accent)",
+                      background: "none",
+                      border: "none",
+                      cursor: "pointer",
+                      flexShrink: 0,
+                      minWidth: "3rem",
+                      textAlign: "right",
+                      padding: 0,
+                    }}
+                    onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.textDecoration = "underline")}
+                    onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.textDecoration = "none")}
                   >
                     {formatTime(seg.time)}
                   </button>
                 )}
-                <p className="text-sm leading-relaxed m-0">
+                <p style={{ fontFamily: "var(--font-serif)", fontSize: "1rem", lineHeight: 1.75, margin: 0 }}>
                   {parts.map((part, j) => {
-                    const reTest = new RegExp(`(${escapeRegex(query)})`, "gi");
-                    return reTest.test(part) ? (
-                      <mark key={j}>{part}</mark>
-                    ) : (
-                      <span key={j}>{part}</span>
-                    );
+                    const t = new RegExp(`(${escapeRegex(query)})`, "gi");
+                    return t.test(part) ? <mark key={j}>{part}</mark> : <span key={j}>{part}</span>;
                   })}
                 </p>
               </div>
             );
           }
 
-          // Normal display
           return (
             <div
               key={seg.id}
               id={`cue-${seg.id}`}
-              className="flex gap-3 py-1.5 rounded-lg px-2 -mx-2 transition-colors"
               style={{
-                background: isActive ? "var(--card-hover)" : undefined,
+                display: "flex",
+                gap: "1rem",
+                padding: "0.375rem 0.5rem",
+                marginLeft: "-0.5rem",
+                marginRight: "-0.5rem",
+                background: isActive ? "var(--card)" : undefined,
+                borderRadius: "2px",
+                transition: "background 0.2s",
               }}
             >
               {hasTimestamp && (
                 <button
                   onClick={() => seekTo(seg.time, seg.id)}
-                  className="flex-shrink-0 w-14 text-xs pt-0.5 text-right cursor-pointer hover:underline font-mono"
-                  style={{ color: "var(--accent)", background: "none", border: "none", padding: 0 }}
+                  style={{
+                    fontFamily: "var(--font-mono)",
+                    fontSize: "0.65rem",
+                    color: "var(--accent)",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    flexShrink: 0,
+                    minWidth: "3rem",
+                    textAlign: "right",
+                    padding: 0,
+                  }}
+                  onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.textDecoration = "underline")}
+                  onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.textDecoration = "none")}
                 >
                   {formatTime(seg.time)}
                 </button>
               )}
-              <p className="text-sm leading-relaxed m-0">{seg.text}</p>
+              <p style={{ fontFamily: "var(--font-serif)", fontSize: "1rem", lineHeight: 1.75, margin: 0 }}>
+                {seg.text}
+              </p>
             </div>
           );
         })}
       </div>
     </div>
   );
-}
 
-function escapeRegex(s: string): string {
-  return s.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  return (
+    <div>
+      {hasVideo && videoMode === "pip" && (
+        <div
+          style={{
+            position: "fixed",
+            bottom: "1.5rem",
+            right: "1.5rem",
+            zIndex: 50,
+            width: "380px",
+            borderRadius: "6px",
+            overflow: "hidden",
+            boxShadow: "0 16px 48px rgba(28,24,17,0.24)",
+            border: "1px solid var(--border)",
+          }}
+        >
+          <div style={{ position: "relative", paddingBottom: "56.25%" }}>
+            <iframe
+              ref={iframeRef}
+              src={embedUrl}
+              style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              title="Teaching video"
+            />
+          </div>
+          <button
+            onClick={() => setVideoMode("hidden")}
+            style={{
+              position: "absolute",
+              top: "0.375rem",
+              right: "0.375rem",
+              width: "1.5rem",
+              height: "1.5rem",
+              borderRadius: "50%",
+              background: "rgba(28,24,17,0.65)",
+              color: "var(--bg)",
+              border: "none",
+              cursor: "pointer",
+              fontSize: "0.75rem",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            &times;
+          </button>
+        </div>
+      )}
+
+      {hasVideo && videoMode === "side" ? (
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "3fr 1fr",
+            gap: "2rem",
+            alignItems: "start",
+          }}
+        >
+          <div>{transcriptContent}</div>
+          <div style={{ position: "sticky", top: "2rem" }}>
+            <div
+              style={{
+                display: "flex",
+                justifyContent: "flex-end",
+                gap: "1rem",
+                marginBottom: "0.5rem",
+              }}
+            >
+              {(["side", "pip", "hidden"] as VideoMode[]).map((mode) => (
+                <button
+                  key={mode}
+                  onClick={() => setVideoMode(mode)}
+                  className="small-caps"
+                  style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "0.6rem",
+                    letterSpacing: "0.08em",
+                    background: "none",
+                    border: "none",
+                    cursor: "pointer",
+                    color: videoMode === mode ? "var(--accent)" : "var(--muted)",
+                    padding: 0,
+                    textDecoration: videoMode === mode ? "underline" : "none",
+                    textUnderlineOffset: "3px",
+                  }}
+                >
+                  {mode === "side" ? "Side" : mode === "pip" ? "Float" : "Hide"}
+                </button>
+              ))}
+            </div>
+            <div style={{ paddingBottom: "56.25%", position: "relative", borderRadius: "4px", overflow: "hidden" }}>
+              <iframe
+                ref={iframeRef}
+                src={embedUrl}
+                style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+                title="Teaching video"
+              />
+            </div>
+            {hasCues && (
+              <p
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.6rem",
+                  color: "var(--muted)",
+                  marginTop: "0.5rem",
+                  letterSpacing: "0.04em",
+                }}
+              >
+                Click timestamp to seek
+              </p>
+            )}
+          </div>
+        </div>
+      ) : (
+        transcriptContent
+      )}
+    </div>
+  );
 }

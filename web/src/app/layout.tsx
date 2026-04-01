@@ -1,70 +1,98 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import Link from "next/link";
+import { Cormorant_Garamond, DM_Mono } from "next/font/google";
 import "./globals.css";
+import AppShell from "@/components/AppShell";
+import { getVerses, getSeries } from "@/lib/data";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const dmMono = DM_Mono({
+  variable: "--font-dm-mono",
   subsets: ["latin"],
+  weight: ["400", "500"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
-  title: "37 Practices Study System",
+  title: "The 37 Practices of Bodhisattvas",
   description:
-    "A dynamic study system for The Thirty-Seven Practices of Bodhisattvas by Gyalse Tokme Zangpo",
+    "A study system for the Thirty-Seven Practices of Bodhisattvas by Gyalse Tokme Zangpo (1295–1369)",
 };
-
-function Nav() {
-  return (
-    <nav className="border-b sticky top-0 z-50" style={{ borderColor: "var(--border)", background: "var(--background)" }}>
-      <div className="max-w-5xl mx-auto px-4 py-3 flex items-center gap-6 text-sm">
-        <Link
-          href="/"
-          className="font-semibold text-base"
-          style={{ color: "var(--accent)" }}
-        >
-          37 Practices
-        </Link>
-        <Link href="/verses" className="hover:underline" style={{ color: "var(--muted)" }}>
-          Verses
-        </Link>
-        <Link href="/transcripts" className="hover:underline" style={{ color: "var(--muted)" }}>
-          Transcripts
-        </Link>
-        <Link href="/search" className="hover:underline" style={{ color: "var(--muted)" }}>
-          Search
-        </Link>
-        <Link href="/toolkit" className="hover:underline" style={{ color: "var(--muted)" }}>
-          Toolkit
-        </Link>
-      </div>
-    </nav>
-  );
-}
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const verses = getVerses();
+  const series = getSeries();
+
+  const cmdkCorpus = {
+    verses: verses.map((v) => ({
+      id: `verse-${v.number}`,
+      type: "verse" as const,
+      title: `${v.number}. ${v.theme}`,
+      href: `/verses/${v.number}`,
+      preview: v.rootText.slice(0, 150),
+    })),
+    transcripts: series.flatMap((s) =>
+      s.parts.map((p) => ({
+        id: `${s.id}-${p.part}`,
+        type: "transcript" as const,
+        title: p.title,
+        href: `/transcripts/${s.id}/${p.part}`,
+        preview: (p.content || "").slice(0, 150),
+      }))
+    ),
+  };
+
   return (
     <html
       lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${cormorant.variable} ${dmMono.variable} h-full`}
     >
-      <body className="min-h-full flex flex-col">
-        <Nav />
-        <main className="flex-1 max-w-5xl mx-auto px-4 py-8 w-full">
-          {children}
-        </main>
-        <footer className="border-t py-4 text-center text-xs" style={{ borderColor: "var(--border)", color: "var(--muted)" }}>
-          Based on <em>The 37 Practices of Bodhisattvas</em> by Gyalse Tokme Zangpo (1295-1369)
-        </footer>
+      <body
+        className="min-h-full flex flex-col"
+        style={{ fontFamily: "var(--font-serif)", background: "var(--bg)", color: "var(--ink)" }}
+      >
+        <AppShell corpus={cmdkCorpus}>
+          <main className="flex-1">
+            {children}
+          </main>
+          <footer
+            className="border-t"
+            style={{ borderColor: "var(--border-hairline)", padding: "3rem 2rem" }}
+          >
+            <div
+              className="text-center"
+              style={{
+                maxWidth: "32rem",
+                margin: "0 auto",
+                fontFamily: "var(--font-serif)",
+                fontSize: "0.8125rem",
+                lineHeight: 1.9,
+                color: "var(--muted)",
+              }}
+            >
+              <p
+                className="small-caps"
+                style={{ letterSpacing: "0.12em", fontSize: "0.7rem", marginBottom: "0.5rem" }}
+              >
+                Colophon
+              </p>
+              <p>
+                <em>The Thirty-Seven Practices of Bodhisattvas</em>
+                <br />
+                composed by Gyalse Tokme Zangpo (1295–1369)
+              </p>
+            </div>
+          </footer>
+        </AppShell>
       </body>
     </html>
   );

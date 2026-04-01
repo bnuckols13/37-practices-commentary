@@ -1,98 +1,132 @@
 import Link from "next/link";
-import { getVerses, GROUP_COLORS } from "@/lib/data";
+import { getVerses } from "@/lib/data";
+
+const GROUP_COLORS: Record<string, string> = {
+  Foundation: "#4A5568",
+  Bodhicitta: "#744210",
+  "Adversity Training": "#7B341E",
+  "Working with Mind": "#44337A",
+  Emptiness: "#234E52",
+  "Six Perfections": "#1A4731",
+  "Daily Vigilance": "#3D3480",
+};
+
+const GROUPS = [
+  "Foundation",
+  "Bodhicitta",
+  "Adversity Training",
+  "Working with Mind",
+  "Emptiness",
+  "Six Perfections",
+  "Daily Vigilance",
+];
 
 export default async function VersesPage({
   searchParams,
 }: {
   searchParams: Promise<{ group?: string }>;
 }) {
-  const { group: filterGroup } = await searchParams;
-  const allVerses = getVerses();
-  const groups = [...new Set(allVerses.map((v) => v.group))];
-  const verses = filterGroup
-    ? allVerses.filter((v) => v.group === filterGroup)
-    : allVerses;
+  const { group: activeGroup } = await searchParams;
+  const verses = getVerses();
+  const filtered = activeGroup
+    ? verses.filter((v) => v.group === activeGroup)
+    : verses;
 
   return (
-    <div>
-      <h1 className="text-2xl font-bold mb-2">The 37 Practices</h1>
-      <p className="text-sm mb-6" style={{ color: "var(--muted)" }}>
-        Click any verse to read its root text, commentary stub, and search related transcripts.
-      </p>
-
-      {/* Group filter */}
-      <div className="flex flex-wrap gap-2 mb-6">
+    <div style={{ maxWidth: "40rem", margin: "0 auto", padding: "3rem 1.5rem 6rem" }}>
+      <nav style={{ display: "flex", flexWrap: "wrap", gap: "0.75rem 1.5rem", marginBottom: "2.5rem" }}>
         <Link
           href="/verses"
-          className="px-3 py-1 rounded-full text-xs border"
+          className="small-caps"
           style={{
-            borderColor: !filterGroup ? "var(--accent)" : "var(--border)",
-            background: !filterGroup ? "var(--accent)" : "transparent",
-            color: !filterGroup ? "white" : "var(--muted)",
+            fontFamily: "var(--font-serif)",
+            fontSize: "0.7rem",
+            letterSpacing: "0.1em",
+            color: !activeGroup ? "var(--accent)" : "var(--muted)",
+            textDecoration: !activeGroup ? "underline" : "none",
+            textUnderlineOffset: "3px",
           }}
         >
           All
         </Link>
-        {groups.map((g) => {
-          const active = filterGroup === g;
-          const color = GROUP_COLORS[g] || "var(--muted)";
-          return (
-            <Link
-              key={g}
-              href={`/verses?group=${encodeURIComponent(g)}`}
-              className="px-3 py-1 rounded-full text-xs border"
-              style={{
-                borderColor: active ? color : "var(--border)",
-                background: active ? color : "transparent",
-                color: active ? "white" : "var(--muted)",
-              }}
-            >
-              {g}
-            </Link>
-          );
-        })}
-      </div>
+        {GROUPS.map((g) => (
+          <Link
+            key={g}
+            href={`/verses?group=${encodeURIComponent(g)}`}
+            className="small-caps"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.7rem",
+              letterSpacing: "0.1em",
+              color: activeGroup === g ? "var(--accent)" : "var(--muted)",
+              textDecoration: activeGroup === g ? "underline" : "none",
+              textUnderlineOffset: "3px",
+            }}
+          >
+            {g}
+          </Link>
+        ))}
+      </nav>
 
-      {/* Verse list */}
-      <div className="space-y-2">
-        {verses.map((v) => {
-          const color = GROUP_COLORS[v.group] || "var(--muted)";
-          return (
-            <Link
-              key={v.number}
-              href={`/verses/${v.number}`}
-              className="block rounded-lg p-4 border transition-colors"
-              style={{ borderColor: "var(--border)", background: "var(--card)" }}
-            >
-              <div className="flex items-start gap-3">
-                <span
-                  className="flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold text-white"
-                  style={{ background: color }}
-                >
-                  {v.number}
-                </span>
-                <div className="min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
-                    <span className="font-medium">{v.theme}</span>
-                    <span
-                      className="text-xs px-2 py-0.5 rounded-full"
-                      style={{ background: `${color}15`, color }}
-                    >
-                      {v.group}
-                    </span>
-                  </div>
-                  <p
-                    className="text-sm line-clamp-2"
-                    style={{ color: "var(--muted)" }}
-                  >
-                    {v.rootText}
-                  </p>
-                </div>
-              </div>
-            </Link>
-          );
-        })}
-      </div>
+      {activeGroup && (
+        <div
+          style={{
+            borderTop: `2px solid ${GROUP_COLORS[activeGroup] || "#888"}`,
+            paddingTop: "1.25rem",
+            marginBottom: "1rem",
+            fontVariant: "small-caps",
+            letterSpacing: "0.1em",
+            fontSize: "0.7rem",
+            color: "var(--muted)",
+            fontFamily: "var(--font-serif)",
+          }}
+        >
+          {activeGroup}
+        </div>
+      )}
+
+      {filtered.map((v) => (
+        <Link
+          key={v.number}
+          href={`/verses/${v.number}`}
+          className="hover-accent"
+          style={{
+            display: "flex",
+            alignItems: "baseline",
+            gap: "1.25rem",
+            padding: "0.6rem 0",
+            borderBottom: "1px solid var(--border-hairline)",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.65rem",
+              color: "var(--muted)",
+              opacity: 0.5,
+              minWidth: "1.75rem",
+              textAlign: "right",
+              flexShrink: 0,
+            }}
+          >
+            {String(v.number).padStart(2, "0")}
+          </span>
+          <span style={{ fontFamily: "var(--font-serif)", fontSize: "1.0625rem", flex: 1 }}>
+            {v.theme}
+          </span>
+          <span
+            className="small-caps"
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.65rem",
+              color: "var(--muted)",
+              opacity: 0.6,
+            }}
+          >
+            {v.group}
+          </span>
+        </Link>
+      ))}
     </div>
   );
 }
