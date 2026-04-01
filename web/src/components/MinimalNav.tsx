@@ -13,6 +13,7 @@ function deriveLabel(pathname: string): string | null {
   if (pathname.startsWith("/transcripts/") && pathname.split("/").length > 3) return "Transcript";
   if (pathname === "/transcripts") return "Transcripts";
   if (pathname === "/search") return "Search";
+  if (pathname === "/frameworks") return "Frameworks";
   if (pathname === "/toolkit") return "Toolkit";
   return null;
 }
@@ -20,6 +21,7 @@ function deriveLabel(pathname: string): string | null {
 const NAV_LINKS = [
   { href: "/verses", label: "Verses" },
   { href: "/transcripts", label: "Transcripts" },
+  { href: "/frameworks", label: "Frameworks" },
   { href: "/toolkit", label: "Toolkit" },
 ];
 

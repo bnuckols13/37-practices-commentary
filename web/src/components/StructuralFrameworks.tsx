@@ -3,18 +3,29 @@
 import { useState } from "react";
 import Link from "next/link";
 
-type TabId = "grid" | "dalailama" | "bodhicitta" | "lojong" | "paramita";
+type TabId = "grid" | "khenpo" | "dalailama" | "bodhicitta" | "lojong" | "paramita" | "garchen";
 
 const TABS: { id: TabId; label: string }[] = [
   { id: "grid", label: "Comparison grid" },
+  { id: "khenpo", label: "Khenpo Sherab Sangpo" },
   { id: "dalailama", label: "HH Dalai Lama" },
   { id: "bodhicitta", label: "Relative / Ultimate pivot" },
   { id: "lojong", label: "Lojong reading" },
   { id: "paramita", label: "Paramita reading" },
+  { id: "garchen", label: "Garchen Rinpoche" },
 ];
 
-// Proportional bar segments for the grid view
 const FRAMEWORKS = [
+  {
+    name: "Khenpo Sherab Sangpo — three-part structure",
+    src: "explicit in teaching series, Part 1",
+    tab: "khenpo" as TabId,
+    segments: [
+      { pct: 29.7, label: "preliminary / motivation v1–11", color: 0 },
+      { pct: 51.4, label: "main practices — six perfections v12–30", color: 2 },
+      { pct: 18.9, label: "integration v31–37", color: 4 },
+    ],
+  },
   {
     name: "Dalai Lama — lam-rim three scopes",
     src: "explicit in commentary text",
@@ -80,48 +91,38 @@ const FRAMEWORKS = [
       { pct: 13.5, label: "fruition v35–37", color: 5 },
     ],
   },
+  {
+    name: "Garchen Rinpoche — bodhicitta as organizing spine",
+    src: "Arizona retreat 2020 — transmission-first approach",
+    tab: "garchen" as TabId,
+    segments: [
+      { pct: 24.3, label: "foundation v1–9", color: 0 },
+      { pct: 29.7, label: "aspiration bodhicitta v10–18", color: 3 },
+      { pct: 18.9, label: "bodhicitta in action v19–24", color: 2 },
+      { pct: 18.9, label: "paramitas v25–30", color: 7 },
+      { pct: 8.1, label: "dedication v31–37", color: 4 },
+    ],
+  },
 ];
 
-// 8 muted semantic colors that work with the parchment palette
 const COLORS = [
-  { bg: "#EAF0F4", fg: "#2A4A5E" },  // slate-blue
-  { bg: "#E8EEF8", fg: "#243A6B" },  // indigo
-  { bg: "#EDE8F8", fg: "#3C2E7A" },  // violet
-  { bg: "#F5EAE3", fg: "#6B2D0F" },  // terracotta
-  { bg: "#F5EDDA", fg: "#5A3306" },  // ochre
-  { bg: "#EDEBE3", fg: "#3D3C35" },  // stone
-  { bg: "#F5E8E8", fg: "#6B1F1F" },  // rose
-  { bg: "#E8F0E3", fg: "#274A0F" },  // sage
+  { bg: "#EAF0F4", fg: "#2A4A5E" },
+  { bg: "#E8EEF8", fg: "#243A6B" },
+  { bg: "#EDE8F8", fg: "#3C2E7A" },
+  { bg: "#F5EAE3", fg: "#6B2D0F" },
+  { bg: "#F5EDDA", fg: "#5A3306" },
+  { bg: "#EDEBE3", fg: "#3D3C35" },
+  { bg: "#F5E8E8", fg: "#6B1F1F" },
+  { bg: "#E8F0E3", fg: "#274A0F" },
 ];
 
 function PivotCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div
-      style={{
-        borderTop: "1px solid var(--border-hairline)",
-        paddingTop: "1.25rem",
-        paddingBottom: "1.25rem",
-      }}
-    >
-      <div
-        style={{
-          fontFamily: "var(--font-serif)",
-          fontSize: "0.9375rem",
-          fontWeight: 500,
-          color: "var(--ink)",
-          marginBottom: "0.6rem",
-        }}
-      >
+    <div style={{ borderTop: "1px solid var(--border-hairline)", paddingTop: "1.25rem", paddingBottom: "1.25rem" }}>
+      <div style={{ fontFamily: "var(--font-serif)", fontSize: "0.9375rem", fontWeight: 500, color: "var(--ink)", marginBottom: "0.6rem" }}>
         {title}
       </div>
-      <div
-        style={{
-          fontFamily: "var(--font-serif)",
-          fontSize: "0.9rem",
-          color: "var(--muted)",
-          lineHeight: 1.8,
-        }}
-      >
+      <div style={{ fontFamily: "var(--font-serif)", fontSize: "0.9rem", color: "var(--muted)", lineHeight: 1.8 }}>
         {children}
       </div>
     </div>
@@ -130,40 +131,27 @@ function PivotCard({ title, children }: { title: string; children: React.ReactNo
 
 function BlockQuote({ children }: { children: React.ReactNode }) {
   return (
-    <div
-      style={{
-        borderLeft: "1px solid var(--border-hairline)",
-        paddingLeft: "1rem",
-        margin: "0.75rem 0 0",
-        fontStyle: "italic",
-        fontSize: "0.875rem",
-        lineHeight: 1.7,
-        color: "var(--muted)",
-      }}
-    >
+    <div style={{ borderLeft: "1px solid var(--border-hairline)", paddingLeft: "1rem", margin: "0.75rem 0 0", fontStyle: "italic", fontSize: "0.875rem", lineHeight: 1.7, color: "var(--muted)" }}>
       {children}
     </div>
   );
 }
 
+function TranscriptBadge({ series, part }: { series: string; part: number }) {
+  return (
+    <Link
+      href={`/transcripts/${series}/${part}`}
+      className="small-caps"
+      style={{ fontFamily: "var(--font-mono)", fontSize: "0.58rem", letterSpacing: "0.06em", color: "var(--accent)", textDecoration: "none", border: "1px solid var(--border)", borderRadius: "2px", padding: "1px 6px", marginLeft: "0.5rem", verticalAlign: "middle" }}
+    >
+      transcript ↗
+    </Link>
+  );
+}
+
 function BackButton({ onClick }: { onClick: () => void }) {
   return (
-    <button
-      onClick={onClick}
-      className="small-caps"
-      style={{
-        fontFamily: "var(--font-serif)",
-        fontSize: "0.65rem",
-        letterSpacing: "0.1em",
-        background: "none",
-        border: "none",
-        cursor: "pointer",
-        color: "var(--muted)",
-        padding: 0,
-        marginTop: "1rem",
-        display: "block",
-      }}
-    >
+    <button onClick={onClick} className="small-caps" style={{ fontFamily: "var(--font-serif)", fontSize: "0.65rem", letterSpacing: "0.1em", background: "none", border: "none", cursor: "pointer", color: "var(--muted)", padding: 0, marginTop: "1rem", display: "block" }}>
       ← back to grid
     </button>
   );
@@ -175,111 +163,40 @@ export default function StructuralFrameworks() {
   return (
     <div>
       {/* Tab bar */}
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          gap: "0.5rem 1.25rem",
-          marginBottom: "1.75rem",
-        }}
-      >
+      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem 1.25rem", marginBottom: "1.75rem" }}>
         {TABS.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className="small-caps"
-            style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "0.68rem",
-              letterSpacing: "0.1em",
-              background: "none",
-              border: "none",
-              cursor: "pointer",
-              padding: 0,
-              color: activeTab === tab.id ? "var(--accent)" : "var(--muted)",
-              textDecoration: activeTab === tab.id ? "underline" : "none",
-              textUnderlineOffset: "3px",
-            }}
+            style={{ fontFamily: "var(--font-serif)", fontSize: "0.68rem", letterSpacing: "0.1em", background: "none", border: "none", cursor: "pointer", padding: 0, color: activeTab === tab.id ? "var(--accent)" : "var(--muted)", textDecoration: activeTab === tab.id ? "underline" : "none", textUnderlineOffset: "3px" }}
           >
             {tab.label}
           </button>
         ))}
       </div>
 
-      {/* GRID VIEW */}
+      {/* ── GRID VIEW ── */}
       {activeTab === "grid" && (
         <div>
-          <p
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.6rem",
-              color: "var(--muted)",
-              letterSpacing: "0.04em",
-              marginBottom: "1.25rem",
-            }}
-          >
-            v1 ←————————————————————————————→ v37 &nbsp;·&nbsp; width proportional to verse count
+          <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "var(--muted)", letterSpacing: "0.04em", marginBottom: "1.25rem" }}>
+            v1 ←————————————————————————————→ v37 &nbsp;·&nbsp; width proportional to verse count · click any bar to read that framework
           </p>
-
           {FRAMEWORKS.map((fw, fi) => (
             <div key={fi} style={{ marginBottom: "1.25rem" }}>
-              <div
-                style={{
-                  fontFamily: "var(--font-serif)",
-                  fontSize: "0.8rem",
-                  color: "var(--ink)",
-                  marginBottom: "0.35rem",
-                  display: "flex",
-                  alignItems: "baseline",
-                  gap: "0.5rem",
-                  flexWrap: "wrap",
-                }}
-              >
+              <div style={{ fontFamily: "var(--font-serif)", fontSize: "0.8rem", color: "var(--ink)", marginBottom: "0.35rem", display: "flex", alignItems: "baseline", gap: "0.5rem", flexWrap: "wrap" }}>
                 <span style={{ fontWeight: 500 }}>{fw.name}</span>
-                <span
-                  className="small-caps"
-                  style={{ fontSize: "0.65rem", color: "var(--muted)", letterSpacing: "0.07em" }}
-                >
-                  {fw.src}
-                </span>
+                <span className="small-caps" style={{ fontSize: "0.62rem", color: "var(--muted)", letterSpacing: "0.07em" }}>{fw.src}</span>
               </div>
               <div
-                style={{
-                  display: "flex",
-                  gap: "2px",
-                  height: "2rem",
-                  cursor: fw.tab !== "grid" ? "pointer" : "default",
-                }}
+                style={{ display: "flex", gap: "2px", height: "2rem", cursor: fw.tab !== "grid" ? "pointer" : "default" }}
                 onClick={() => fw.tab !== "grid" && setActiveTab(fw.tab)}
-                title={fw.tab !== "grid" ? `View ${TABS.find((t) => t.id === fw.tab)?.label}` : undefined}
               >
                 {fw.segments.map((seg, si) => {
                   const c = COLORS[seg.color];
                   return (
-                    <div
-                      key={si}
-                      style={{
-                        width: `${seg.pct}%`,
-                        background: c.bg,
-                        borderRadius: "3px",
-                        display: "flex",
-                        alignItems: "center",
-                        justifyContent: "center",
-                        overflow: "hidden",
-                        flexShrink: 0,
-                      }}
-                    >
-                      <span
-                        style={{
-                          fontFamily: "var(--font-mono)",
-                          fontSize: "0.55rem",
-                          color: c.fg,
-                          padding: "0 4px",
-                          whiteSpace: "nowrap",
-                          overflow: "hidden",
-                          textOverflow: "ellipsis",
-                        }}
-                      >
+                    <div key={si} style={{ width: `${seg.pct}%`, background: c.bg, borderRadius: "3px", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", flexShrink: 0 }}>
+                      <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: c.fg, padding: "0 4px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
                         {seg.label}
                       </span>
                     </div>
@@ -288,71 +205,93 @@ export default function StructuralFrameworks() {
               </div>
             </div>
           ))}
-
-          <p
-            style={{
-              fontFamily: "var(--font-serif)",
-              fontSize: "0.8rem",
-              fontStyle: "italic",
-              color: "var(--muted)",
-              marginTop: "1rem",
-            }}
-          >
-            Click any bar to read that framework in detail.
+          <p style={{ fontFamily: "var(--font-serif)", fontSize: "0.8rem", fontStyle: "italic", color: "var(--muted)", marginTop: "0.75rem" }}>
+            Each framework is real — not a scholarly projection but a structural claim made explicitly by the teacher or traceable from their commentary. The disagreements between them are themselves a meditation object.
           </p>
         </div>
       )}
 
-      {/* DALAI LAMA VIEW */}
+      {/* ── KHENPO SHERAB SANGPO ── */}
+      {activeTab === "khenpo" && (
+        <div>
+          <PivotCard title="Three-part structure — Khenpo Sherab Sangpo">
+            Khenpo opens his 11-part teaching series by announcing an explicit three-part architecture before teaching a single verse. This is a deliberate lineage method — he notes his own teachers always give the summary first so the student can hold the map while walking the territory.
+            <BlockQuote>
+              "So it has three main principles. First, cultivating the motivation to follow the bodhisattva path. Second, engaging in the specific trainings of the bodhisattva path. And third, integrating those practices into your life."
+            </BlockQuote>
+            <TranscriptBadge series="transcripts-playlist" part={1} />
+          </PivotCard>
+
+          <PivotCard title="Preliminary — v1–11: Motivation and foundation">
+            <BlockQuote>
+              "The first few verses emphasize renouncing worldly attachments. They encourage practitioners to reflect on the nature of life such as the suffering of samsara, benefits of seeking liberation for the sake of all sentient beings."
+            </BlockQuote>
+            Verses 1–11 are not merely preparatory in the sense of "getting ready." They are the active clearing of impediments — severing worldly ties, generating refuge, establishing bodhicitta as the motivational ground. Without this ground, the adversity practices of v12–18 become mere stoicism rather than transformation.
+          </PivotCard>
+
+          <PivotCard title="Main practices — v12–30: Six perfections through adversity">
+            <BlockQuote>
+              "The following verses describe the specific practices a bodhisattva should cultivate. They explain how to overcome negative emotions and how to use difficult situations — including harm caused by others — as opportunities to cultivate the six perfections."
+            </BlockQuote>
+            Khenpo explicitly organizes v12–30 around the six paramitas. The adversity section (v12–18) is not a separate thematic block but the crucible in which the paramitas are trained. Difficult circumstances are the curriculum.
+            <BlockQuote>
+              "Every harm is like a precious treasure… for bodhisattvas, difficulties are not seen as obstacles but as opportunities to cultivate patience."
+            </BlockQuote>
+            <TranscriptBadge series="transcripts-playlist" part={6} />
+          </PivotCard>
+
+          <PivotCard title="Verse 22 — explicit hinge announcement">
+            This is the most analytically significant moment in all 18 transcript sessions. In Part 7, Khenpo stops and explicitly announces the structural transition:
+            <BlockQuote>
+              "The main topics presented in this 37 Practices text is about relative and ultimate bodhicitta. And up until now we have had a profound explanation of relative bodhicitta — which is taking on the suffering of others, exchanging yourself with others, and correct engaging in post-meditation practice. Now here we are going to start with the teachings on ultimate bodhicitta. The 22nd verse explains the practice of ultimate bodhicitta."
+            </BlockQuote>
+            <TranscriptBadge series="transcripts-playlist" part={7} />
+            This confirms the Dalai Lama's structural reading from independent commentary. Two sources, both explicit, both pointing to v22 as the primary hinge of the text.
+          </PivotCard>
+
+          <PivotCard title="Integration — v31–37: Ultimate view + dedication">
+            <BlockQuote>
+              "The final verses focus on how to follow the bodhisattva path — like practicing the union of bodhicitta and emptiness, which is the heart essence of the bodhisattva journey."
+            </BlockQuote>
+            The final section is not a miscellaneous closing — it is the integration of everything: the motivation from v1–11, the training from v12–30, now held within the wisdom that was introduced at v22. The dedication verse (v37) seals the merit and perpetuates it until enlightenment.
+            <BlockQuote>
+              "These 37 practices do not come naturally to us. Without mindfulness and awareness, we will not be able to do them. The nature of our being tends to manifest in negative actions due to our habits. The only way to transform these habits is to engage in these 37 practices with effort and diligence."
+            </BlockQuote>
+            <TranscriptBadge series="transcripts-playlist" part={11} />
+          </PivotCard>
+
+          <BackButton onClick={() => setActiveTab("grid")} />
+        </div>
+      )}
+
+      {/* ── DALAI LAMA ── */}
       {activeTab === "dalailama" && (
         <div>
           <PivotCard title="Three-scope lam-rim structure — HH Dalai Lama">
-            The Dalai Lama's commentary makes explicit what other readings leave implicit: the text
-            tracks the classic Tibetan <em style={{ color: "var(--ink)" }}>lam-rim</em> graduated
-            path, dividing practitioners by the scope of their aspiration. He says after v8:
+            The Dalai Lama's commentary makes explicit what other readings leave implicit: the text tracks the classic Tibetan <em style={{ color: "var(--ink)" }}>lam-rim</em> graduated path, dividing practitioners by the scope of their aspiration.
             <BlockQuote>
-              "Up to this point the path for the man of smallest scope has been explained. What
-              follows concerns the man of medium scope."
+              "Up to this point the path for the man of smallest scope has been explained. What follows concerns the man of medium scope."
             </BlockQuote>
             At v10 the large scope begins with the arising of bodhicitta.
           </PivotCard>
 
           <PivotCard title="Small scope — v1–8">
-            <em style={{ color: "var(--ink)" }}>Renunciation and foundation.</em> The practitioner
-            recognizes precious human birth (v1), abandons attachments to home and bad companions
-            (v2–5), finds a good teacher (v6), takes refuge (v7), and commits to avoiding negative
-            karma (v8). The aim is avoiding the lower realms — motivation is still self-oriented.
+            <em style={{ color: "var(--ink)" }}>Renunciation and foundation.</em> Precious human birth (v1), abandons attachments (v2–5), finds a good teacher (v6), takes refuge (v7), avoids negative karma (v8). Motivation is still self-oriented — avoiding the lower realms.
             <br /><br />
-            The Triple Gem here carries a clinical structure:{" "}
-            <em style={{ color: "var(--ink)" }}>
-              Buddha as the doctor who diagnoses, Dharma as the medicine you must actually take,
-              Sangha as the nurse who models recovery.
-            </em>{" "}
-            Taking refuge is not passive — it is committing to the treatment.
+            The Triple Gem here carries a clinical structure: <em style={{ color: "var(--ink)" }}>Buddha as the doctor who diagnoses, Dharma as the medicine you must actually take, Sangha as the nurse who models recovery.</em> Taking refuge is not passive — it is committing to the treatment.
           </PivotCard>
 
           <PivotCard title="Medium scope — v9 (a single verse)">
-            <em style={{ color: "var(--ink)" }}>Aspiration for personal liberation.</em> Only v9
-            covers this scope — the recognition that even a fortunate human rebirth is impermanent,
-            and the turn toward nirvana. The brevity is deliberate: personal liberation is legitimate
-            but insufficient.
+            Only v9 covers this scope — the turn toward nirvana. The brevity is deliberate: personal liberation is legitimate but insufficient.
             <BlockQuote>
-              "We sacrifice our temporary happiness for nirvana. This is reasonable, for the two
-              cannot in fact be compared. In the same way, for the happiness of other sentient beings
-              we sacrifice our own."
+              "We sacrifice our temporary happiness for nirvana. This is reasonable, for the two cannot in fact be compared. In the same way, for the happiness of other sentient beings we sacrifice our own."
             </BlockQuote>
           </PivotCard>
 
           <PivotCard title="Large scope — v10–37">
-            <em style={{ color: "var(--ink)" }}>Bodhicitta in all its forms.</em> Everything from
-            the recognition of all beings as mothers (v10) through dedication free of the three
-            spheres (v37) belongs here. The large scope subdivides into aspiration bodhicitta, lojong
-            training, and the ultimate view — but all of it operates from the frame of seeking
-            buddhahood for all beings.
+            Everything from v10 through v37. Subdivides into aspiration bodhicitta, lojong training, and the ultimate view — but all operates from the frame of seeking buddhahood for all beings.
             <BlockQuote>
-              "There are two intentions: 1) the wish to help other sentient beings; 2) to achieve
-              buddhahood for this. The state of mind of bodhicitta is brought about by these two
-              intentions."
+              "There are two intentions: 1) the wish to help other sentient beings; 2) to achieve buddhahood for this. The state of mind of bodhicitta is brought about by these two intentions."
             </BlockQuote>
           </PivotCard>
 
@@ -360,156 +299,134 @@ export default function StructuralFrameworks() {
         </div>
       )}
 
-      {/* RELATIVE / ULTIMATE PIVOT */}
+      {/* ── RELATIVE / ULTIMATE PIVOT ── */}
       {activeTab === "bodhicitta" && (
         <div>
-          <PivotCard title="The relative / ultimate bodhicitta division — the primary structural hinge">
-            The Dalai Lama makes a rare explicit statement after v21 that almost no casual reader
-            catches:
+          <PivotCard title="The primary structural hinge — confirmed by two independent sources">
+            Both the Dalai Lama's written commentary and Khenpo Sherab Sangpo's transcript teaching explicitly mark v22 as the boundary between relative and ultimate bodhicitta. This is not a scholarly inference — it is stated directly by both teachers.
+            <br /><br />
+            <strong style={{ fontFamily: "var(--font-serif)", color: "var(--ink)", fontSize: "0.875rem" }}>Dalai Lama (written commentary, after v21):</strong>
             <BlockQuote>
-              "The practices so far described relate to relative bodhicitta. Those that follow relate
-              to absolute bodhicitta, the realizing of shunyata."
+              "The practices so far described relate to relative bodhicitta. Those that follow relate to absolute bodhicitta, the realizing of shunyata."
             </BlockQuote>
-            This places{" "}
-            <em style={{ color: "var(--ink)" }}>the primary structural hinge at v22</em>, not at
-            the start of the paramitas (v25). The text has two large halves: a relative bodhicitta
-            half (v1–21) and an ultimate bodhicitta half (v22–37). Most casual readings miss this
-            entirely.
+            <strong style={{ fontFamily: "var(--font-serif)", color: "var(--ink)", fontSize: "0.875rem" }}>Khenpo Sherab Sangpo (transcript, Part 7):</strong>
+            <BlockQuote>
+              "Up until now we have had a profound explanation of relative bodhicitta… Now here we are going to start with the teachings on ultimate bodhicitta. The 22nd verse explains the practice of ultimate bodhicitta."
+            </BlockQuote>
+            <TranscriptBadge series="transcripts-playlist" part={7} />
           </PivotCard>
 
-          <PivotCard title="V22 — the pivot verse (space-like meditation)">
+          <PivotCard title="V22 — space-like meditation">
             <em style={{ fontStyle: "italic", color: "var(--muted)" }}>
-              "Appearances are one's own mind. From the beginning, mind's nature is free from the
-              extremes of elaboration. Knowing this, not to engage the mind in subject-object duality
-              is the bodhisattvas' practice."
+              "Appearances are one's own mind. From the beginning, mind's nature is free from the extremes of elaboration. Knowing this, not to engage the mind in subject-object duality is the bodhisattvas' practice."
             </em>
             <BlockQuote>
-              "In space-like meditation we meditate on shunyata, afterwards the idea is not to reject
-              everything, but to see everything without exaggeration." — Dalai Lama
+              "In space-like meditation we meditate on shunyata, afterwards the idea is not to reject everything, but to see everything without exaggeration." — Dalai Lama
             </BlockQuote>
-            This is direct recognition of the non-inherent existence of phenomena. Not an
-            intellectual proposition — an instruction for a meditative shift.
+            Direct recognition of the non-inherent existence of phenomena. An instruction for a meditative shift, not an intellectual proposition.
           </PivotCard>
 
           <PivotCard title="V23–24 — illusion-like meditation (post-shunyata behavior)">
-            <em style={{ color: "var(--ink)" }}>Two modes of shunyata in action.</em> V23 (pleasant
-            objects like a summer rainbow — don&apos;t grasp) and v24 (suffering like a dream —
-            don&apos;t reify) are not part of the paramita section proper. They are the{" "}
-            <em style={{ color: "var(--ink)" }}>
-              behavioral expression of the view in v22
-            </em>
-            : how you handle attraction and aversion once you&apos;ve seen through inherent
-            existence.
+            V23 (pleasant objects like a summer rainbow — don't grasp) and v24 (suffering like a dream — don't reify) are the <em style={{ color: "var(--ink)" }}>behavioral expression of the view in v22</em>: how you handle attraction and aversion once you've seen through inherent existence.
             <BlockQuote>
-              "The purpose of realizing shunyata is to know the proper way of coping with
-              existence… to stop this exaggeration of the object by ignorance." — Dalai Lama
+              "The purpose of realizing shunyata is to know the proper way of coping with existence… to stop this exaggeration of the object by ignorance." — Dalai Lama
             </BlockQuote>
             V23–24 are the bridge between the view (v22) and the paramitas (v25+).
           </PivotCard>
 
-          <PivotCard title="Why this matters for practice">
-            Most readings treat v22 as one verse among many in the lojong section. The Dalai
-            Lama&apos;s framework reveals it as the pivot of the entire text. Everything before is{" "}
-            <em style={{ color: "var(--ink)" }}>ethical and motivational</em> cultivation.
-            Everything after is{" "}
-            <em style={{ color: "var(--ink)" }}>wisdom-grounded</em> cultivation. The paramitas
-            (v25–30) are not a new section — they&apos;re the six perfections held within the space
-            of non-dual awareness. Without this pivot, the paramitas look like techniques. With it,
-            they look like expressions of view.
+          <PivotCard title="Why this matters for every practice before v22">
+            Most readings treat v22 as one verse among many. The confirmed hinge reveals: everything before is <em style={{ color: "var(--ink)" }}>ethical and motivational</em> cultivation. Everything after is <em style={{ color: "var(--ink)" }}>wisdom-grounded</em> cultivation. The paramitas (v25–30) are six perfections held within non-dual awareness. Without this pivot, the paramitas look like techniques. With it, they look like expressions of view.
           </PivotCard>
 
           <BackButton onClick={() => setActiveTab("grid")} />
         </div>
       )}
 
-      {/* LOJONG READING */}
+      {/* ── LOJONG READING ── */}
       {activeTab === "lojong" && (
         <div>
           <PivotCard title="Lojong reading — Dilgo Khyentse Rinpoche, Geshe Jampa Tegchok">
-            The lojong tradition reads the text&apos;s center of gravity as{" "}
-            <em style={{ color: "var(--ink)" }}>v14–22</em> — the nine adversity practices. In this
-            framing, v1–13 is preparation and v23–37 is elaboration, but the text&apos;s distinctive
-            contribution is the crucible of difficult-circumstance practice. Dilgo Khyentse&apos;s{" "}
-            <em>Heart of Compassion</em> and Jampa Tegchok&apos;s{" "}
-            <em>Transforming Adversity</em> both organize their commentary to foreground this
-            section.
+            The lojong tradition reads the text's center of gravity as <em style={{ color: "var(--ink)" }}>v14–22</em> — the adversity practices. V1–13 is preparation; v23–37 is elaboration. The text's distinctive contribution is the crucible of difficult-circumstance practice.
           </PivotCard>
 
           <PivotCard title="The nine adversity cases (v14–22)">
-            The lojong reading sees a deliberate escalation in difficulty:
-            <br />
-            <br />
-            <em style={{ color: "var(--ink)" }}>v14</em> — slander in public &nbsp;·&nbsp;{" "}
-            <em style={{ color: "var(--ink)" }}>v15</em> — public shaming &nbsp;·&nbsp;{" "}
-            <em style={{ color: "var(--ink)" }}>v16</em> — betrayal by a beloved &nbsp;·&nbsp;{" "}
-            <em style={{ color: "var(--ink)" }}>v17</em> — contempt from an inferior &nbsp;·&nbsp;{" "}
-            <em style={{ color: "var(--ink)" }}>v18</em> — extreme poverty &nbsp;·&nbsp;{" "}
-            <em style={{ color: "var(--ink)" }}>v19</em> — extreme wealth &nbsp;·&nbsp;{" "}
-            <em style={{ color: "var(--ink)" }}>v20</em> — inner vs outer enemies &nbsp;·&nbsp;{" "}
-            <em style={{ color: "var(--ink)" }}>v21</em> — craving as salt water &nbsp;·&nbsp;{" "}
-            <em style={{ color: "var(--ink)" }}>v22</em> — the view that dissolves the self
-            that suffers
+            Deliberate escalation in difficulty:
+            <br /><br />
+            <em style={{ color: "var(--ink)" }}>v14</em> — slander in public &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>v15</em> — public shaming &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>v16</em> — betrayal by beloved &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>v17</em> — contempt from inferior &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>v18</em> — extreme poverty &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>v19</em> — extreme wealth &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>v20</em> — inner vs outer enemies &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>v21</em> — craving as salt water &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>v22</em> — the view that dissolves the self that suffers
             <BlockQuote>
-              Each scenario is not just a difficult situation — it is a complete practice
-              instruction. The verse doesn&apos;t say "endure this." It says "this is the
-              bodhisattvas&apos; practice" — the adversity is the practice, not an obstacle to it.
+              Each scenario is not just a difficult situation — it is a complete practice instruction. The verse doesn't say "endure this." It says "this is the bodhisattvas' practice" — the adversity is the practice, not an obstacle to it.
             </BlockQuote>
+            Khenpo adds a psychological reading of v18's "evil spirits": inner obstacles (fear, doubt, anxiety, jealousy, wrong views) and outer obstacles (illness, poverty, difficult people) — both are the same curriculum.
+            <TranscriptBadge series="transcripts-playlist" part={6} />
           </PivotCard>
 
           <PivotCard title="Why v22 functions differently in this reading">
-            In the lojong reading, v22 is the{" "}
-            <em style={{ color: "var(--ink)" }}>resolution</em> of the adversity section rather
-            than a pivot to ultimate teaching. If all nine adversities have been met with compassion
-            and non-retaliation, v22 reveals why this was possible: the mind that suffers is not
-            ultimately findable. The lojong and the view are not two phases — the view is what
-            lojong practice has been cultivating all along. Dilgo Khyentse emphasizes this
-            continuity strongly.
+            In the lojong reading, v22 is the <em style={{ color: "var(--ink)" }}>resolution</em> of the adversity section rather than a pivot to ultimate teaching. If all nine adversities have been met with compassion, v22 reveals why this was possible: the mind that suffers is not ultimately findable. The lojong and the view are not two phases — the view is what lojong practice has been cultivating all along.
           </PivotCard>
 
           <BackButton onClick={() => setActiveTab("grid")} />
         </div>
       )}
 
-      {/* PARAMITA READING */}
+      {/* ── PARAMITA READING ── */}
       {activeTab === "paramita" && (
         <div>
           <PivotCard title="Paramita reading — Geshe Sonam Rinchen, Khenpo Tsultrim Gyamtso">
-            The Gelug and some Kagyu commentaries organize the text around the six paramitas as the
-            spine of Mahayana practice. In this reading, everything prior to v25 builds the basis:
-            renunciation (v1–9) → aspiration and action bodhicitta (v10–22) → the six perfections
-            proper (v25–30). V23–24 are often included as "view preludes." The subsequent conduct
-            practices (v31–36) are the paramitas expressed in daily life.
+            Organizes around the six paramitas as the spine of Mahayana practice. Everything prior to v25 builds the basis: renunciation (v1–9) → aspiration and action bodhicitta (v10–22) → six perfections (v25–30). V23–24 are "view preludes." Conduct practices (v31–36) are the paramitas in daily life.
+            <br /><br />
+            Note: Khenpo Sherab Sangpo's transcript reading partially overlaps this — he also organizes v12–30 around the six perfections, but places the adversity section as the <em style={{ color: "var(--ink)" }}>training ground</em> for them rather than treating v25–30 as a discrete paramita block.
           </PivotCard>
 
           <PivotCard title="The compression problem — one verse per paramita">
-            Compared to Shantideva&apos;s <em>Bodhicaryavatara</em>, which gives full chapters to
-            each paramita, the 37 Practices compresses each to a single verse. The paramita reading
-            treats this not as incompleteness but as deliberate aphorism — mnemonics for
-            practitioners who already have the long-form teachings.
+            Compared to Shantideva's <em>Bodhicaryavatara</em>, which gives full chapters to each paramita, the 37 Practices compresses each to a single verse. These are mnemonics for practitioners who already have the long-form teachings.
             <br /><br />
-            <em style={{ color: "var(--ink)" }}>Generosity</em> (v25): give even your body &nbsp;·&nbsp;{" "}
-            <em style={{ color: "var(--ink)" }}>Ethics</em> (v26): without ethics, helping others
-            is laughable &nbsp;·&nbsp;{" "}
-            <em style={{ color: "var(--ink)" }}>Patience</em> (v27): enemies are precious
-            treasures &nbsp;·&nbsp;{" "}
-            <em style={{ color: "var(--ink)" }}>Diligence</em> (v28): even Hinayanists strive
-            urgently &nbsp;·&nbsp;{" "}
-            <em style={{ color: "var(--ink)" }}>Meditation</em> (v29): insight needs samadhi
-            &nbsp;·&nbsp;{" "}
-            <em style={{ color: "var(--ink)" }}>Wisdom</em> (v30): without prajna, the other five
-            don&apos;t reach buddhahood
+            <em style={{ color: "var(--ink)" }}>Generosity</em> (v25): give even your body &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>Ethics</em> (v26): without ethics, helping others is laughable &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>Patience</em> (v27): enemies are precious treasures &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>Diligence</em> (v28): even Hinayanists strive urgently &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>Meditation</em> (v29): insight needs samadhi &nbsp;·&nbsp; <em style={{ color: "var(--ink)" }}>Wisdom</em> (v30): without prajna the other five don't reach buddhahood
           </PivotCard>
 
           <PivotCard title="The wisdom verse (v30) as culmination — and the loop back to v22">
-            In the paramita reading, v30 is the capstone:{" "}
-            <em>
-              "Cultivating skillful means with the wisdom that does not discriminate among the three
-              spheres."
-            </em>{" "}
-            The other five paramitas are perfected when held by prajna free from the three spheres
-            (giver, receiver, gift). This creates a subtle loop: the wisdom that completes the
-            paramitas is the same view introduced in v22. The text circles back on itself —{" "}
-            <em style={{ color: "var(--ink)" }}>the end points to the middle.</em>
+            V30: <em>"Cultivating skillful means with the wisdom that does not discriminate among the three spheres."</em> The other five paramitas are perfected when held by prajna free from the three spheres (giver, receiver, gift). This wisdom is the same view introduced in v22. The text circles back — <em style={{ color: "var(--ink)" }}>the end points to the middle.</em>
+          </PivotCard>
+
+          <BackButton onClick={() => setActiveTab("grid")} />
+        </div>
+      )}
+
+      {/* ── GARCHEN RINPOCHE ── */}
+      {activeTab === "garchen" && (
+        <div>
+          <PivotCard title="Garchen Rinpoche — bodhicitta as organizing spine (Arizona retreat 2020)">
+            Unlike Khenpo's announced three-part framework, Garchen's structural principle is implicit and more radical: <em style={{ color: "var(--ink)" }}>every verse is already about bodhicitta, even v1</em>. The precious human life is precious because it enables us to ceaselessly liberate others. "Others" comes first from the very opening line.
+            <br /><br />
+            Garchen opens his retreat by reciting the root text verses as prayer before analyzing them — structure emerges from embodied transmission, not conceptual pre-announcement.
+            <BlockQuote>
+              "Having now gained this great ship of freedom and fortune, so difficult to find, in order to free yourself and others from the ocean of cyclic existence, listen, reflect and meditate day and night without distraction — this is the way of a bodhisattva."
+            </BlockQuote>
+            <TranscriptBadge series="transcripts-garchen-arizona-2020" part={1} />
+          </PivotCard>
+
+          <PivotCard title="Bodhicitta divided into two — a non-standard reading">
+            At v10, Garchen makes his structural key explicit. But his division is different from the standard aspiration/action bodhicitta:
+            <BlockQuote>
+              "Bodhicitta is divided into two: awareness mind and realized mind. Awareness means to remain in tranquility, having eliminated selfishness. Realized means having achieved the mind to work for the benefit of all sentient beings."
+            </BlockQuote>
+            This is not the standard aspiration/action distinction. Garchen's "awareness" is closer to the ground of mind — resting in open clarity free of self-grasping. His "realized" is the active expression of that ground in compassionate service. The two are <em style={{ color: "var(--ink)" }}>Mahamudra awareness + compassionate activity</em>, not two sequential stages.
+          </PivotCard>
+
+          <PivotCard title="The text as transmission object — an extraordinary claim">
+            Garchen makes a claim about the text itself that no other commentator makes:
+            <BlockQuote>
+              "This little booklet is very important, because if you have read it once, it's the same as having read the Kanjur… This book also contains a mantra by sight where one only needs to have seen it then one can be liberated."
+            </BlockQuote>
+            And: <em style={{ color: "var(--ink)" }}>"Whether I am here or not, you must know that this book is me. This book represents me. In future after my death, when you see this book you are seeing me. There is no difference."</em>
+            <br /><br />
+            This is a Vajrayana doctrine of the text as lama — the book carries blessing through contact, not just through intellectual understanding. It reframes what you are doing when you study these 37 verses.
+            <TranscriptBadge series="transcripts-garchen-arizona-2020" part={2} />
+          </PivotCard>
+
+          <PivotCard title="Multi-teacher validation — structure as universal truth">
+            Garchen's retreat features three authorized teachers across 7 sessions: Garchen Rinpoche (Parts 1–2, 4–6), Drupon Rinchen Dorje (Part 3), and Khenpo Tenzin (Part 7). Multiple authentic teachers teaching the same text validates its content as universal truth rather than single-perspective interpretation.
+            <br /><br />
+            The methodological implication: any reading that depends entirely on one teacher's framing is incomplete. The frameworks on this page represent at least five distinct structural visions — all coherent, all partial.
           </PivotCard>
 
           <BackButton onClick={() => setActiveTab("grid")} />
