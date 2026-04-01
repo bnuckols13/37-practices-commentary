@@ -1,0 +1,9 @@
+# Part 1 — add transcript when you have it
+
+**Video:** (paste URL here)
+
+Paste an auto-caption or manual transcript export below. Suggested filename when you save: keep the name `transcript-part1-autocaption.txt` so links in the README stay valid.
+
+---
+
+(Transcript goes here.)

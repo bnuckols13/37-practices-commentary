@@ -1,0 +1,11 @@
+# Part 3+ — optional slot
+
+**Video:** (paste URL here)
+
+Use this file for the next session after Part 2, or duplicate this pattern:
+
+`transcript-part4-autocaption.txt`, etc.
+
+---
+
+(Transcript goes here.)
