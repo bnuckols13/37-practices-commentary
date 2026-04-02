@@ -8,7 +8,7 @@ export const metadata = {
 
 export default function FrameworksPage() {
   return (
-    <div style={{ maxWidth: "40rem", margin: "0 auto", padding: "3rem 1.5rem 6rem" }}>
+    <div style={{ maxWidth: "56rem", margin: "0 auto", padding: "3rem 1.5rem 6rem" }}>
       <header style={{ marginBottom: "2.5rem" }}>
         <h1
           style={{

@@ -213,7 +213,7 @@ export default function StructuralFrameworks() {
           {/* Verse ruler */}
           <div style={{ display: "flex", marginBottom: "1.5rem" }}>
             {/* Name column spacer */}
-            <div style={{ flexShrink: 0, width: "9rem" }} />
+            <div style={{ flexShrink: 0, width: "7rem" }} />
             {/* Ruler */}
             <div style={{ flex: 1, position: "relative", height: "2rem" }}>
               {/* Baseline */}
@@ -292,7 +292,7 @@ export default function StructuralFrameworks() {
                 {/* Name column */}
                 <div style={{
                   flexShrink: 0,
-                  width: "9rem",
+                  width: "7rem",
                   paddingRight: "0.75rem",
                   display: "flex",
                   flexDirection: "column",
@@ -300,22 +300,22 @@ export default function StructuralFrameworks() {
                 }}>
                   <span style={{
                     fontFamily: "var(--font-serif)",
-                    fontSize: "0.78rem",
+                    fontSize: "0.72rem",
                     fontWeight: 500,
                     color: "var(--ink)",
-                    lineHeight: 1.3,
+                    lineHeight: 1.25,
                     display: "block",
                   }}>
                     {fw.name}
                   </span>
                   <span style={{
                     fontFamily: "var(--font-serif)",
-                    fontSize: "0.65rem",
+                    fontSize: "0.6rem",
                     fontStyle: "italic",
                     color: "var(--muted)",
                     lineHeight: 1.3,
                     display: "block",
-                    marginTop: "1px",
+                    marginTop: "2px",
                   }}>
                     {fw.src}
                   </span>
@@ -337,20 +337,20 @@ export default function StructuralFrameworks() {
                   }} />
 
                   {/* Segments */}
-                  <div style={{ display: "flex", gap: "2px", height: "52px" }}>
+                  <div style={{ display: "flex", gap: "3px", height: "58px" }}>
                     {fw.segments.map((seg, si) => {
                       const c = COLORS[seg.color];
                       return (
                         <div
                           key={si}
                           style={{
-                            flex: `0 0 calc(${seg.pct}% - 1px)`,
+                            flex: `0 0 calc(${seg.pct}% - 1.5px)`,
                             background: c.bg,
-                            borderRadius: "3px",
+                            borderRadius: "4px",
                             display: "flex",
                             flexDirection: "column",
                             justifyContent: "center",
-                            padding: "0 6px",
+                            padding: "0 8px",
                             overflow: "hidden",
                             minWidth: 0,
                           }}
@@ -360,7 +360,7 @@ export default function StructuralFrameworks() {
                             fontFamily: "var(--font-mono)",
                             fontSize: "0.5rem",
                             color: c.fg,
-                            opacity: 0.75,
+                            opacity: 0.65,
                             letterSpacing: "0.02em",
                             whiteSpace: "nowrap",
                             overflow: "hidden",
@@ -372,7 +372,7 @@ export default function StructuralFrameworks() {
                           {/* Section label */}
                           <span style={{
                             fontFamily: "var(--font-serif)",
-                            fontSize: "0.58rem",
+                            fontSize: "0.65rem",
                             color: c.fg,
                             fontWeight: 500,
                             whiteSpace: "nowrap",

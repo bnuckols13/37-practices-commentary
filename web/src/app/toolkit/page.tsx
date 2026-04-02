@@ -3,7 +3,7 @@ import StructuralFrameworks from "@/components/StructuralFrameworks";
 
 export default function ToolkitPage() {
   return (
-    <div style={{ maxWidth: "40rem", margin: "0 auto", padding: "3rem 1.5rem 6rem" }}>
+    <div style={{ maxWidth: "56rem", margin: "0 auto", padding: "3rem 1.5rem 6rem" }}>
 
       {/* Header */}
       <div className="prose">
