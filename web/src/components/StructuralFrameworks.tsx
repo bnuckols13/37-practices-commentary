@@ -223,7 +223,7 @@ export default function StructuralFrameworks() {
             <BlockQuote>
               "I memorized this text when I was 11 years old."
             </BlockQuote>
-            Memorized at 11 — before any of the commentaries were studied. The map precedes the territory. Students who grow up holding these 37 verses as a childhood memory encounter the long commentaries as elaborations of something already known in the body.
+            Memorized at 11 — before any of the commentaries were studied. Students who memorized this text at 11 encounter the long commentaries as elaborations of something they already carry. The verses settle into the body before the doctrine settles into the intellect.
             <BlockQuote>
               "So it has three main principles. First, cultivating the motivation to follow the bodhisattva path. Second, engaging in the specific trainings of the bodhisattva path. And third, integrating those practices into your life."
             </BlockQuote>
@@ -254,7 +254,7 @@ export default function StructuralFrameworks() {
               "The main topics presented in this 37 Practices text is about relative and ultimate bodhicitta. And up until now we have had a profound explanation of relative bodhicitta — which is taking on the suffering of others, exchanging yourself with others, and correct engaging in post-meditation practice. Now here we are going to start with the teachings on ultimate bodhicitta. The 22nd verse explains the practice of ultimate bodhicitta."
             </BlockQuote>
             <TranscriptBadge series="transcripts-playlist" part={7} />
-            This confirms the Dalai Lama's structural reading from independent commentary. Two sources, both explicit, both pointing to v22 as the primary hinge of the text.
+            The Dalai Lama reaches the same structural conclusion independently — not by inference from surrounding content but as a direct statement.
           </PivotCard>
 
           <PivotCard title="Integration — v31–37: Ultimate view + dedication">
@@ -311,7 +311,7 @@ export default function StructuralFrameworks() {
       {activeTab === "bodhicitta" && (
         <div>
           <PivotCard title="The primary structural hinge — confirmed by two independent sources">
-            Both the Dalai Lama's written commentary and Khenpo Sherab Sangpo's transcript teaching explicitly mark v22 as the boundary between relative and ultimate bodhicitta. This is not a scholarly inference — it is stated directly by both teachers.
+            Both the Dalai Lama's written commentary and Khenpo Sherab Sangpo's transcript series mark v22 as the boundary between relative and ultimate bodhicitta. Neither is inferring it from surrounding content. Both state it directly.
             <br /><br />
             <strong style={{ fontFamily: "var(--font-serif)", color: "var(--ink)", fontSize: "0.875rem" }}>Dalai Lama (written commentary, after v21):</strong>
             <BlockQuote>
@@ -343,7 +343,7 @@ export default function StructuralFrameworks() {
           </PivotCard>
 
           <PivotCard title="Why this matters for every practice before v22">
-            Most readings treat v22 as one verse among many. The confirmed hinge reveals: everything before is <em style={{ color: "var(--ink)" }}>ethical and motivational</em> cultivation. Everything after is <em style={{ color: "var(--ink)" }}>wisdom-grounded</em> cultivation. The paramitas (v25–30) are six perfections held within non-dual awareness. Without this pivot, the paramitas look like techniques. With it, they look like expressions of view.
+            Most readings treat v22 as one verse among many. The confirmed hinge changes the whole picture. The verses before v22 train the ground: motivation, exchange of self and other, adversity as curriculum. The verses after operate from a different register. The paramitas are six perfections practiced by someone who has stopped reifying the agent, the recipient, and the act. Read v25–30 without v22 in view, and you have six techniques. Read them after sitting with v22, and each one describes what a perfection looks like when the practitioner has stopped taking herself to be ultimately real.
           </PivotCard>
 
           <BackButton onClick={() => setActiveTab("grid")} />
@@ -364,12 +364,12 @@ export default function StructuralFrameworks() {
             <BlockQuote>
               Each scenario is not just a difficult situation — it is a complete practice instruction. The verse doesn't say "endure this." It says "this is the bodhisattvas' practice" — the adversity is the practice, not an obstacle to it.
             </BlockQuote>
-            Khenpo adds a psychological reading of v18's "evil spirits": inner obstacles (fear, doubt, anxiety, jealousy, wrong views) and outer obstacles (illness, poverty, difficult people) — both are the same curriculum.
+            Khenpo parses v18's "evil spirits" into two categories: inner obstacles like fear, doubt, jealousy, and wrong views, and outer obstacles like illness, poverty, and difficult people. The verse makes no distinction between them.
             <TranscriptBadge series="transcripts-playlist" part={6} />
           </PivotCard>
 
           <PivotCard title="Why v22 functions differently in this reading">
-            In the lojong reading, v22 is the <em style={{ color: "var(--ink)" }}>resolution</em> of the adversity section rather than a pivot to ultimate teaching. If all nine adversities have been met with compassion, v22 reveals why this was possible: the mind that suffers is not ultimately findable. The lojong and the view are not two phases — the view is what lojong practice has been cultivating all along.
+            In the lojong reading, v22 <em style={{ color: "var(--ink)" }}>resolves</em> the adversity section rather than pivoting to a new subject. When you have met all nine adversities with compassion, v22 explains why this was possible: the mind that suffers is not ultimately findable. The lojong and the view are not two phases of the path. Lojong practice has been pointing at the view from the start.
           </PivotCard>
 
           <BackButton onClick={() => setActiveTab("grid")} />
@@ -398,7 +398,7 @@ export default function StructuralFrameworks() {
           </PivotCard>
 
           <PivotCard title="The wisdom verse (v30) as culmination — and the loop back to v22">
-            V30: <em>"Cultivating skillful means with the wisdom that does not discriminate among the three spheres."</em> The other five paramitas are perfected when held by prajna free from the three spheres (giver, receiver, gift). This wisdom is the same view introduced in v22. The text circles back — <em style={{ color: "var(--ink)" }}>the end points to the middle.</em>
+            V30: <em>"Cultivating skillful means with the wisdom that does not discriminate among the three spheres."</em> The other five paramitas are perfected when held by prajna free from the three spheres (giver, receiver, gift). This wisdom is the same view introduced in v22. The text circles back. <em style={{ color: "var(--ink)" }}>V30 points to v22.</em>
           </PivotCard>
 
           <BackButton onClick={() => setActiveTab("grid")} />
@@ -440,7 +440,7 @@ export default function StructuralFrameworks() {
           <PivotCard title="Multi-teacher validation — structure as universal truth">
             Garchen's retreat features three authorized teachers across 7 sessions: Garchen Rinpoche (Parts 1–2, 4–6), Drupon Rinchen Dorje (Part 3), and Khenpo Tenzin (Part 7). Multiple authentic teachers teaching the same text validates its content as universal truth rather than single-perspective interpretation.
             <br /><br />
-            The methodological implication: any reading that depends entirely on one teacher's framing is incomplete. The frameworks on this page represent at least five distinct structural visions — all coherent, all partial.
+            The methodological implication: any reading that depends entirely on one teacher's framing is incomplete. The frameworks on this page represent at least five distinct structural visions of the same 37 verses. Each one becomes a different text.
           </PivotCard>
 
           <BackButton onClick={() => setActiveTab("grid")} />

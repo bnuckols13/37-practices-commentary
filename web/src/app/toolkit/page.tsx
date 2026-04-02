@@ -77,17 +77,18 @@ export default function ToolkitPage() {
       <div className="prose">
         <h2>Layer 1: How to Read This Text</h2>
         <p>
-          Before meditating on individual verses, it matters enormously{" "}
-          <em>which map you use</em>. Different teachers draw the structural lines in
-          different places — and each cut reveals a different organizing logic in the same 37
-          verses. The comparison below shows six frameworks side by side.
+          Before meditating on individual verses, it matters{" "}
+          <em>which map you carry</em>. Different teachers draw the structural lines in
+          different places, and each cut changes what you&apos;re looking at when you read
+          the same 37 verses. The comparison below shows six frameworks.
         </p>
         <p>
-          This isn&apos;t just academic: which framework you inhabit determines which verse
-          you treat as the center of gravity, and which you read as setup or elaboration.
-          The Dalai Lama&apos;s framework — with its explicit hinge at v22 — is the most
-          structurally precise. The lojong framework — centering on adversity practices — is
-          the most practically intense. Choose your entry point deliberately.
+          The choice has practical consequences. The framework you inhabit determines which
+          verse functions as center of gravity and which reads as preparation or coda. The
+          Dalai Lama&apos;s reading, with its explicit hinge at v22, is the most structurally
+          precise. The lojong reading, which centers the adversity practices, is the most
+          useful when difficulty is what the practice currently has to work with. Choose your
+          entry point before you start.
         </p>
       </div>
 
@@ -213,8 +214,8 @@ export default function ToolkitPage() {
             mind in subject-object duality is the bodhisattvas&apos; practice.&rdquo;
           </em>
           <br /><br />
-          This is not an intellectual proposition — it is an instruction for a meditative
-          shift. The Dalai Lama: &ldquo;In space-like meditation we meditate on shunyata,
+          This is an instruction for a meditative shift, not an intellectual proposition.
+          The Dalai Lama: &ldquo;In space-like meditation we meditate on shunyata,
           afterwards the idea is not to reject everything, but to see everything without
           exaggeration.&rdquo;
         </HingeCard>
@@ -232,12 +233,11 @@ export default function ToolkitPage() {
         </HingeCard>
 
         <HingeCard verse="v25–30" label="The paramitas re-read from the view">
-          Without v22 as the pivot, the paramitas look like six techniques. With it, they look
-          like six expressions of a wisdom that has already recognized non-inherent existence.
-          Generosity becomes effortless when the &ldquo;giver&rdquo; isn&apos;t reified.
-          Patience becomes natural when the &ldquo;one who is harmed&rdquo; is not ultimately
-          findable. The three spheres (giver, receiver, gift) mentioned in v30 are the same
-          insight as v22 — applied to action.
+          Read v25–30 without v22 in view, and you get six techniques with the agent intact.
+          Read them after sitting with v22, and each practice becomes a description of what
+          generosity, patience, or wisdom looks like when the practitioner has stopped
+          reifying herself. The three spheres mentioned in v30 — giver, receiver, gift — are
+          not a formula to be learned. They circle back to the same recognition v22 introduced.
         </HingeCard>
       </div>
 

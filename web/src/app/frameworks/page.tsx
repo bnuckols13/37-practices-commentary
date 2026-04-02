@@ -31,8 +31,8 @@ export default function FrameworksPage() {
             maxWidth: "36rem",
           }}
         >
-          Different teachers make different cuts through the same 37 verses — each reveals a
-          distinct organizing logic. The frameworks below are not scholarly projections but
+          Different teachers make different cuts through the same 37 verses. Each cut reveals
+          a different organizing logic. The frameworks below are not scholarly projections but
           structural claims made explicitly by the teachers themselves, including direct quotes
           from the{" "}
           <span style={{ fontStyle: "italic" }}>
@@ -55,8 +55,8 @@ export default function FrameworksPage() {
             fontStyle: "italic",
           }}
         >
-          The disagreements between frameworks are themselves a meditation object: which verse
-          is the center of gravity determines which verses are setup and which are elaboration.
+          The disagreements between frameworks are worth sitting with: which verse you treat
+          as the center of gravity determines which verses read as setup and which read as elaboration.
         </p>
       </header>
 
@@ -84,13 +84,12 @@ export default function FrameworksPage() {
           <a href="/toolkit" style={{ color: "var(--accent)" }}>
             Analytical Meditation Toolkit
           </a>
-          , choose the framework that resonates most with your current practice orientation:
-          the Khenpo three-part structure for a clear sequential map; the Dalai Lama&apos;s
-          lam-rim for understanding scope of motivation; the relative/ultimate pivot for
-          working with v22 as the hinge; the lojong reading if adversity is your current
-          teacher; the paramita reading if you want the six perfections as the organizing
-          spine; Garchen&apos;s bodhicitta frame if you want every verse to be already
-          about the heart.
+          , choose the framework that fits where you are: the Khenpo three-part structure
+          gives you a clear sequential map; the Dalai Lama&apos;s lam-rim situates each
+          verse within the scope of aspiration; the relative/ultimate pivot makes v22 the
+          hinge everything else turns on; the lojong reading puts adversity at the center;
+          the paramita reading uses the six perfections as spine; Garchen&apos;s frame makes
+          bodhicitta the organizing principle of every verse from the first.
         </p>
         <p>
           Then — after sustained study — read a single verse through all six frameworks in
