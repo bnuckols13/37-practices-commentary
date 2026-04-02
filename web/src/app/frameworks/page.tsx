@@ -92,7 +92,7 @@ export default function FrameworksPage() {
           bodhicitta the organizing principle of every verse from the first.
         </p>
         <p>
-          Then — after sustained study — read a single verse through all six frameworks in
+          Then, after sustained study, read a single verse through all six frameworks in
           sequence. The verse will not be the same verse by the end.
         </p>
       </div>

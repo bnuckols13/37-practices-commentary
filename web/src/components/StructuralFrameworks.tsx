@@ -206,7 +206,7 @@ export default function StructuralFrameworks() {
             </div>
           ))}
           <p style={{ fontFamily: "var(--font-serif)", fontSize: "0.8rem", fontStyle: "italic", color: "var(--muted)", marginTop: "0.75rem" }}>
-            Each framework is real — not a scholarly projection but a structural claim made explicitly by the teacher or traceable from their commentary. The disagreements between them are themselves a meditation object.
+            Each framework is a structural claim made explicitly by the teacher, or traceable from their commentary. None of them is a scholarly projection. The disagreements between them are worth sitting with.
           </p>
         </div>
       )}
@@ -215,15 +215,15 @@ export default function StructuralFrameworks() {
       {activeTab === "khenpo" && (
         <div>
           <PivotCard title="Three-part structure — Khenpo Sherab Sangpo">
-            Khenpo opens his 11-part teaching series by announcing an explicit three-part architecture before teaching a single verse. This is a deliberate lineage method — he notes his own teachers always give the summary first so the student can hold the map while walking the territory. He situates the text immediately within the full Mahayana curriculum:
+            Khenpo opens his 11-part teaching series by announcing an explicit three-part architecture before teaching a single verse. His own teachers always gave the summary before the verse-by-verse teaching, so the student could hold the map while walking the territory. He situates the text immediately within the full Mahayana curriculum:
             <BlockQuote>
               "This text summarizes the entire bodhisattva path and offers excellent instructions for Mahayana practice."
             </BlockQuote>
-            This claim establishes the stakes. The 37 verses are not a supplement to the Mahayana path — they <em style={{ color: "var(--ink)" }}>are</em> the path in compressed form. Khenpo adds a biographical note that reveals how foundational the text is in traditional Tibetan education:
+            This claim establishes the stakes. The 37 verses are not a supplement to the Mahayana path. They <em style={{ color: "var(--ink)" }}>are</em> the path in compressed form. Khenpo adds a biographical note that reveals how foundational the text is in traditional Tibetan education:
             <BlockQuote>
               "I memorized this text when I was 11 years old."
             </BlockQuote>
-            Memorized at 11 — before any of the commentaries were studied. Students who memorized this text at 11 encounter the long commentaries as elaborations of something they already carry. The verses settle into the body before the doctrine settles into the intellect.
+            Memorized at 11, before any of the commentaries were studied. Students who memorized this text at 11 encounter the long commentaries as elaborations of something they already carry. The verses settle into the body before the doctrine settles into the intellect.
             <BlockQuote>
               "So it has three main principles. First, cultivating the motivation to follow the bodhisattva path. Second, engaging in the specific trainings of the bodhisattva path. And third, integrating those practices into your life."
             </BlockQuote>
@@ -234,7 +234,7 @@ export default function StructuralFrameworks() {
             <BlockQuote>
               "The first few verses emphasize renouncing worldly attachments. They encourage practitioners to reflect on the nature of life such as the suffering of samsara, benefits of seeking liberation for the sake of all sentient beings."
             </BlockQuote>
-            Verses 1–11 are not merely preparatory in the sense of "getting ready." They are the active clearing of impediments — severing worldly ties, generating refuge, establishing bodhicitta as the motivational ground. Without this ground, the adversity practices of v12–18 become mere stoicism rather than transformation.
+            Verses 1–11 are not merely preparatory in the sense of "getting ready." They are the active clearing of impediments: severing worldly ties, generating refuge, establishing bodhicitta as the motivational ground. Without this ground, the adversity practices of v12–18 become mere stoicism rather than transformation.
           </PivotCard>
 
           <PivotCard title="Main practices — v12–30: Six perfections through adversity">
@@ -254,14 +254,14 @@ export default function StructuralFrameworks() {
               "The main topics presented in this 37 Practices text is about relative and ultimate bodhicitta. And up until now we have had a profound explanation of relative bodhicitta — which is taking on the suffering of others, exchanging yourself with others, and correct engaging in post-meditation practice. Now here we are going to start with the teachings on ultimate bodhicitta. The 22nd verse explains the practice of ultimate bodhicitta."
             </BlockQuote>
             <TranscriptBadge series="transcripts-playlist" part={7} />
-            The Dalai Lama reaches the same structural conclusion independently — not by inference from surrounding content but as a direct statement.
+            The Dalai Lama reaches the same structural conclusion independently. He states it directly, not by inference from surrounding content.
           </PivotCard>
 
           <PivotCard title="Integration — v31–37: Ultimate view + dedication">
             <BlockQuote>
               "The final verses focus on how to follow the bodhisattva path — like practicing the union of bodhicitta and emptiness, which is the heart essence of the bodhisattva journey."
             </BlockQuote>
-            The final section is not a miscellaneous closing — it is the integration of everything: the motivation from v1–11, the training from v12–30, now held within the wisdom that was introduced at v22. The dedication verse (v37) seals the merit and perpetuates it until enlightenment.
+            The final section integrates everything: the motivation from v1–11, the training from v12–30, now held within the wisdom introduced at v22. The dedication verse (v37) seals the merit and perpetuates it until enlightenment.
             <BlockQuote>
               "These 37 practices do not come naturally to us. Without mindfulness and awareness, we will not be able to do them. The nature of our being tends to manifest in negative actions due to our habits. The only way to transform these habits is to engage in these 37 practices with effort and diligence."
             </BlockQuote>
@@ -284,20 +284,20 @@ export default function StructuralFrameworks() {
           </PivotCard>
 
           <PivotCard title="Small scope — v1–8">
-            <em style={{ color: "var(--ink)" }}>Renunciation and foundation.</em> Precious human birth (v1), abandons attachments (v2–5), finds a good teacher (v6), takes refuge (v7), avoids negative karma (v8). Motivation is still self-oriented — avoiding the lower realms.
+            <em style={{ color: "var(--ink)" }}>Renunciation and foundation.</em> Precious human birth (v1), abandons attachments (v2–5), finds a good teacher (v6), takes refuge (v7), avoids negative karma (v8). Motivation is still self-oriented: avoiding the lower realms.
             <br /><br />
-            The Triple Gem here carries a clinical structure: <em style={{ color: "var(--ink)" }}>Buddha as the doctor who diagnoses, Dharma as the medicine you must actually take, Sangha as the nurse who models recovery.</em> Taking refuge is not passive — it is committing to the treatment.
+            The Triple Gem here carries a clinical structure: <em style={{ color: "var(--ink)" }}>Buddha as the doctor who diagnoses, Dharma as the medicine you must actually take, Sangha as the nurse who models recovery.</em> Taking refuge is not passive. It is committing to the treatment.
           </PivotCard>
 
           <PivotCard title="Medium scope — v9 (a single verse)">
-            Only v9 covers this scope — the turn toward nirvana. The brevity is deliberate: personal liberation is legitimate but insufficient.
+            Only v9 covers this scope: the turn toward nirvana. The brevity is deliberate. Personal liberation is legitimate but insufficient.
             <BlockQuote>
               "We sacrifice our temporary happiness for nirvana. This is reasonable, for the two cannot in fact be compared. In the same way, for the happiness of other sentient beings we sacrifice our own."
             </BlockQuote>
           </PivotCard>
 
           <PivotCard title="Large scope — v10–37">
-            Everything from v10 through v37. Subdivides into aspiration bodhicitta, lojong training, and the ultimate view — but all operates from the frame of seeking buddhahood for all beings.
+            Everything from v10 through v37. Subdivides into aspiration bodhicitta, lojong training, and the ultimate view; all of it operates from the frame of seeking buddhahood for all beings.
             <BlockQuote>
               "There are two intentions: 1) the wish to help other sentient beings; 2) to achieve buddhahood for this. The state of mind of bodhicitta is brought about by these two intentions."
             </BlockQuote>
@@ -335,7 +335,7 @@ export default function StructuralFrameworks() {
           </PivotCard>
 
           <PivotCard title="V23–24 — illusion-like meditation (post-shunyata behavior)">
-            V23 (pleasant objects like a summer rainbow — don't grasp) and v24 (suffering like a dream — don't reify) are the <em style={{ color: "var(--ink)" }}>behavioral expression of the view in v22</em>: how you handle attraction and aversion once you've seen through inherent existence.
+            V23 takes a summer rainbow as its image for pleasant objects: vivid, present, nothing to hold. V24 takes a dream as its image for suffering: real in the moment, without substance. Both are the behavioral expression of the view in v22, showing how you handle attraction and aversion once you've seen through inherent existence.
             <BlockQuote>
               "The purpose of realizing shunyata is to know the proper way of coping with existence… to stop this exaggeration of the object by ignorance." — Dalai Lama
             </BlockQuote>
@@ -354,7 +354,7 @@ export default function StructuralFrameworks() {
       {activeTab === "lojong" && (
         <div>
           <PivotCard title="Lojong reading — Dilgo Khyentse Rinpoche, Geshe Jampa Tegchok">
-            The lojong tradition reads the text's center of gravity as <em style={{ color: "var(--ink)" }}>v14–22</em> — the adversity practices. V1–13 is preparation; v23–37 is elaboration. The text's distinctive contribution is the crucible of difficult-circumstance practice.
+            The lojong tradition reads the text's center of gravity as <em style={{ color: "var(--ink)" }}>v14–22</em>, the adversity practices. V1–13 is preparation; v23–37 is elaboration. The text's distinctive contribution is the crucible of difficult-circumstance practice.
           </PivotCard>
 
           <PivotCard title="The nine adversity cases (v14–22)">
@@ -382,7 +382,7 @@ export default function StructuralFrameworks() {
           <PivotCard title="Paramita reading — Geshe Sonam Rinchen, Khenpo Tsultrim Gyamtso">
             Organizes around the six paramitas as the spine of Mahayana practice. Everything prior to v25 builds the basis: renunciation (v1–9) → aspiration and action bodhicitta (v10–22) → six perfections (v25–30). V23–24 are "view preludes." Conduct practices (v31–36) are the paramitas in daily life.
             <br /><br />
-            Note: Khenpo Sherab Sangpo's transcript reading partially overlaps this — he also organizes v12–30 around the six perfections, but places the adversity section as the <em style={{ color: "var(--ink)" }}>training ground</em> for them rather than treating v25–30 as a discrete paramita block.
+            Note: Khenpo Sherab Sangpo's transcript reading partially overlaps this. He also organizes v12–30 around the six perfections, but places the adversity section as the <em style={{ color: "var(--ink)" }}>training ground</em> for them rather than treating v25–30 as a discrete paramita block.
           </PivotCard>
 
           <PivotCard title="The compression problem — one verse per paramita">
@@ -394,7 +394,7 @@ export default function StructuralFrameworks() {
             <BlockQuote>
               "The essence of the perfection of generosity is about realization of nonattachment."
             </BlockQuote>
-            This reverses the conventional reading. Generosity is not primarily <em style={{ color: "var(--ink)" }}>giving</em> — it is the <em style={{ color: "var(--ink)" }}>dissolution of the grasper who clings</em>. When nonattachment is realized, generosity is what naturally flows. The perfection is not the act but the view behind it. This connects v25 directly to the wisdom of v22: paramitas held within non-dual awareness are not techniques — they are expressions of what is already present when self-grasping is released.
+            This reverses the conventional reading. Generosity is not primarily <em style={{ color: "var(--ink)" }}>giving</em>. It is the <em style={{ color: "var(--ink)" }}>dissolution of the grasper who clings</em>. When nonattachment is realized, generosity is what naturally follows. The perfection is not the act but the view it comes from. This connects v25 directly to the wisdom of v22: paramitas held within non-dual awareness are not techniques. They are expressions of what is already present when self-grasping is released.
           </PivotCard>
 
           <PivotCard title="The wisdom verse (v30) as culmination — and the loop back to v22">
@@ -411,7 +411,7 @@ export default function StructuralFrameworks() {
           <PivotCard title="Garchen Rinpoche — bodhicitta as organizing spine (Arizona retreat 2020)">
             Unlike Khenpo's announced three-part framework, Garchen's structural principle is implicit and more radical: <em style={{ color: "var(--ink)" }}>every verse is already about bodhicitta, even v1</em>. The precious human life is precious because it enables us to ceaselessly liberate others. "Others" comes first from the very opening line.
             <br /><br />
-            Garchen opens his retreat by reciting the root text verses as prayer before analyzing them — structure emerges from embodied transmission, not conceptual pre-announcement.
+            Garchen opens his retreat by reciting the root text verses as prayer before analyzing them. Structure emerges from embodied transmission, not conceptual pre-announcement.
             <BlockQuote>
               "Having now gained this great ship of freedom and fortune, so difficult to find, in order to free yourself and others from the ocean of cyclic existence, listen, reflect and meditate day and night without distraction — this is the way of a bodhisattva."
             </BlockQuote>
@@ -423,7 +423,7 @@ export default function StructuralFrameworks() {
             <BlockQuote>
               "Bodhicitta is divided into two: awareness mind and realized mind. Awareness means to remain in tranquility, having eliminated selfishness. Realized means having achieved the mind to work for the benefit of all sentient beings."
             </BlockQuote>
-            This is not the standard aspiration/action distinction. Garchen's "awareness" is closer to the ground of mind — resting in open clarity free of self-grasping. His "realized" is the active expression of that ground in compassionate service. The two are <em style={{ color: "var(--ink)" }}>Mahamudra awareness + compassionate activity</em>, not two sequential stages.
+            This is not the standard aspiration/action distinction. Garchen's "awareness" is closer to the ground of mind, resting in open clarity free of self-grasping. His "realized" is the active expression of that ground in compassionate service. The two are <em style={{ color: "var(--ink)" }}>Mahamudra awareness + compassionate activity</em>, not two sequential stages.
           </PivotCard>
 
           <PivotCard title="The text as transmission object — an extraordinary claim">
@@ -433,7 +433,7 @@ export default function StructuralFrameworks() {
             </BlockQuote>
             And: <em style={{ color: "var(--ink)" }}>"Whether I am here or not, you must know that this book is me. This book represents me. In future after my death, when you see this book you are seeing me. There is no difference."</em>
             <br /><br />
-            This is a Vajrayana doctrine of the text as lama — the book carries blessing through contact, not just through intellectual understanding. It reframes what you are doing when you study these 37 verses.
+            This is a Vajrayana doctrine of the text as lama. The book carries blessing through contact, not just through intellectual understanding. It reframes what you are doing when you study these 37 verses.
             <TranscriptBadge series="transcripts-garchen-arizona-2020" part={2} />
           </PivotCard>
 

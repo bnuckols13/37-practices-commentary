@@ -170,7 +170,7 @@ export default function ToolkitPage() {
         </h3>
         <p>
           Why does he say generosity requires giving &ldquo;without hope of karmic
-          results&rdquo;? This is radical — it negates even spiritual materialism. And notice
+          results&rdquo;? This is radical: it negates even spiritual materialism. And notice
           the loop: v30&apos;s wisdom is the same view introduced in v22. The paramitas end
           where the ultimate bodhicitta section began.
         </p>
@@ -202,8 +202,8 @@ export default function ToolkitPage() {
             &ldquo;The practices so far described relate to relative bodhicitta. Those that
             follow relate to absolute bodhicitta, the realizing of shunyata.&rdquo;
           </blockquote>
-          This makes v22 the primary structural hinge of the entire 37 Practices — not the
-          start of the paramitas (v25), as most readings assume. The text has two halves:
+          This makes v22 the primary structural hinge of the entire 37 Practices. Most readings
+          assume the hinge is v25, where the paramitas begin. It is not. The text has two halves:
           ethical/motivational cultivation (v1–21), and wisdom-grounded cultivation (v22–37).
         </HingeCard>
 
@@ -221,22 +221,22 @@ export default function ToolkitPage() {
         </HingeCard>
 
         <HingeCard verse="v23–24" label="Illusion-like meditation — the view in action">
-          V23 (pleasant objects like a summer rainbow — don&apos;t grasp) and v24 (suffering
-          like a dream — don&apos;t reify) are not part of the paramita section proper. They
-          are the behavioral expression of the view in v22: how you handle attraction and
+          V23 takes a summer rainbow as its image for pleasant objects: vivid, present, nothing
+          to hold. V24 takes a dream as its image for suffering: real in the moment, without
+          substance. Neither verse is part of the paramita section proper. Both are the
+          behavioral expression of the view in v22, showing how you handle attraction and
           aversion <em>after</em> you&apos;ve seen through inherent existence.
           <br /><br />
-          Meditate on: Can you hold a pleasant experience with the same quality of attention
-          you&apos;d give to a rainbow — present, vivid, and not grasped? Can you meet
-          suffering without adding the layer of &ldquo;this is absolutely real and absolutely
-          bad&rdquo;?
+          Meditate on: Can you hold a pleasant experience with the quality of attention you bring
+          to a rainbow: present, vivid, not clutched? Can you meet suffering without adding the
+          layer of &ldquo;this is absolutely real and absolutely bad&rdquo;?
         </HingeCard>
 
         <HingeCard verse="v25–30" label="The paramitas re-read from the view">
           Read v25–30 without v22 in view, and you get six techniques with the agent intact.
           Read them after sitting with v22, and each practice becomes a description of what
           generosity, patience, or wisdom looks like when the practitioner has stopped
-          reifying herself. The three spheres mentioned in v30 — giver, receiver, gift — are
+          reifying herself. The three spheres mentioned in v30 (giver, receiver, gift) are
           not a formula to be learned. They circle back to the same recognition v22 introduced.
         </HingeCard>
       </div>
@@ -247,7 +247,7 @@ export default function ToolkitPage() {
         <h2>Layer 4: Cross-Commentary Inquiry Questions</h2>
         <p>
           Questions designed to generate novel insight by holding multiple commentators in
-          tension. These are not rhetorical — sit with each one in formal meditation.
+          tension. These are not rhetorical. Sit with each one in formal meditation.
         </p>
       </div>
 
@@ -295,17 +295,16 @@ export default function ToolkitPage() {
         </InquiryCard>
 
         <InquiryCard number={7}>
-          Ringu Tulku says words don&apos;t inherently harm — interpretation does. But{" "}
+          Ringu Tulku says words don&apos;t inherently harm. Interpretation does. But{" "}
           <Link href="/verses/34" style={{ color: "var(--accent)" }}>practice 34</Link> says
           abandon harsh speech. If the harm is in the listener&apos;s interpretation, why is
           the speaker responsible?
         </InquiryCard>
 
         <InquiryCard number={8}>
-          Garchen Rinpoche treats bodhicitta as the organizing spine of all 37 verses —
-          every verse is already about bodhicitta, even v1. The Dalai Lama divides the text
-          into relative and ultimate sections. Can both be true? Is bodhicitta the container
-          or the content?
+          Garchen Rinpoche treats bodhicitta as the organizing spine of all 37 verses,
+          including v1. The Dalai Lama divides the text into relative and ultimate sections.
+          Can both be true? Is bodhicitta the container or the content?
         </InquiryCard>
       </div>
 
@@ -336,14 +335,14 @@ export default function ToolkitPage() {
         </DayCard>
         <DayCard day={5} title="The Hinge" practices="21–24">
           Read the Dalai Lama&apos;s commentary on v22 slowly. Attempt the space-like
-          meditation he describes. Then sit with v23 and v24 as illusion-like practice — hold
+          meditation he describes. Then sit with v23 and v24 as illusion-like practice: hold
           one pleasant experience and one difficult one within the same quality of non-grasping
           attention. Journal: What collapsed? What was left?
         </DayCard>
         <DayCard day={6} title="The Six Perfections" practices="25–30">
           For each paramita, identify one concrete action you can take today. Do them. Journal:
           Which felt natural? Which felt forced? Now re-read each verse holding v22 in
-          mind — does the practice shift when the agent is not reified?
+          mind. Does the practice shift when the agent is not reified?
         </DayCard>
         <DayCard day={7} title="Vigilance &amp; Dedication" practices="31–37">
           Spend the day with practice 36 as your anchor: &ldquo;What is the state of my
@@ -364,8 +363,8 @@ export default function ToolkitPage() {
           </li>
           <li>
             <strong>Modern application mapping:</strong> What is the 2026 version of each
-            situation? (e.g., Practice 14 about slander — what about social media? Practice 2
-            about homeland — what about digital spaces you&apos;re attached to?)
+            situation? (e.g., Practice 14 addresses slander: what about social media? Practice 2
+            addresses homeland: what about digital spaces you&apos;re attached to?)
           </li>
           <li>
             <strong>Cross-tradition bridges:</strong> How does each practice relate to concepts
@@ -401,22 +400,22 @@ export default function ToolkitPage() {
         <CommentatorCard
           name="HH Dalai Lama"
           lens="Lam-rim + relative/ultimate structure"
-          unique="Makes the v22 hinge explicit. Triple Gem as doctor/medicine/nurse. Personal stories, humor, radical accessibility. Frames the text through graduated path — small, medium, large scope — and then subdivides the large scope into relative and ultimate bodhicitta with v22 as the explicit dividing line."
+          unique="Makes the v22 hinge explicit. Triple Gem as doctor/medicine/nurse. Personal stories, humor, radical accessibility. Frames the text through the graduated path (small, medium, large scope), then subdivides the large scope into relative and ultimate bodhicitta with v22 as the explicit dividing line."
         />
         <CommentatorCard
           name="HE Garchen Rinpoche"
           lens="Bodhicitta as organizing spine"
-          unique='Every verse is already about bodhicitta — even v1. Your job IS bodhisattva practice if the motivation is right. Karma as debt repayment. Bodhicitta divided into awareness mind (ground of open clarity) and realized mind (active service) — this is Mahamudra awareness + compassionate activity, not two sequential stages.'
+          unique='Every verse is already about bodhicitta, including v1. Your job IS bodhisattva practice if the motivation is right. Karma as debt repayment. Bodhicitta divided into awareness mind (ground of open clarity) and realized mind (active service): Mahamudra awareness + compassionate activity, not two sequential stages.'
         />
         <CommentatorCard
           name="Alexander Berzin"
           lens="Analytical precision"
-          unique="4 types of desire carefully distinguished. Paramitas as mental states not external acts. Two-phase voidness meditation (space-like in sitting, illusion-like in action). The most philosophically rigorous commentary — use it when you need to be precise about what a term actually means."
+          unique="4 types of desire carefully distinguished. Paramitas as mental states not external acts. Two-phase voidness meditation (space-like in sitting, illusion-like in action). The most philosophically rigorous commentary; use it when you need to be precise about what a term actually means."
         />
         <CommentatorCard
           name="Dilgo Khyentse Rinpoche"
           lens="Lojong and adversity as center"
-          unique="Self-cherishing as THE root of samsara. Suffering as medicine for arrogance. Tonglen with vivid heart-light imagery. Centers the adversity section (v14–22) as the core of the text — preparation leads here, and paramitas elaborate from here."
+          unique="Self-cherishing as THE root of samsara. Suffering as medicine for arrogance. Tonglen with vivid heart-light imagery. Centers the adversity section (v14–22) as the core of the text: preparation leads here, and paramitas elaborate from here."
         />
         <CommentatorCard
           name="Thubten Chodron"
@@ -426,7 +425,7 @@ export default function ToolkitPage() {
         <CommentatorCard
           name="Ringu Tulku"
           lens="Response over event"
-          unique="Words don't inherently harm — interpretation does. Three dimensions of solitude (outer, inner, secret). Emptiness strengthens commitment rather than dissolving it. Emphasizes continuity between lojong and view — the adversity practices and v22 are not two phases but one movement."
+          unique="Words don't inherently harm. Interpretation does. Three dimensions of solitude (outer, inner, secret). Emptiness strengthens commitment rather than dissolving it. Emphasizes continuity between lojong and view: the adversity practices and v22 are not two phases but one movement."
         />
       </div>
     </div>
