@@ -17,103 +17,103 @@ const TABS: { id: TabId; label: string }[] = [
 
 const FRAMEWORKS = [
   {
-    name: "Khenpo Sherab Sangpo — three-part structure",
-    src: "explicit in teaching series, Part 1",
+    name: "Khenpo Sherab Sangpo",
+    src: "three-part structure",
     tab: "khenpo" as TabId,
     segments: [
-      { pct: 29.7, label: "preliminary / motivation v1–11", color: 0 },
-      { pct: 51.4, label: "main practices — six perfections v12–30", color: 2 },
-      { pct: 18.9, label: "integration v31–37", color: 4 },
+      { pct: 29.7, verses: "v1–11", label: "Preliminary", color: 0 },
+      { pct: 51.4, verses: "v12–30", label: "Main practices", color: 2 },
+      { pct: 18.9, verses: "v31–37", label: "Integration", color: 4 },
     ],
   },
   {
-    name: "Dalai Lama — lam-rim three scopes",
-    src: "explicit in commentary text",
+    name: "Dalai Lama",
+    src: "lam-rim three scopes",
     tab: "dalailama" as TabId,
     segments: [
-      { pct: 21.6, label: "small scope v1–8", color: 0 },
-      { pct: 2.7, label: "v9", color: 1 },
-      { pct: 75.7, label: "large scope — bodhicitta v10–37", color: 2 },
+      { pct: 21.6, verses: "v1–8", label: "Small scope", color: 0 },
+      { pct: 2.7, verses: "v9", label: "Medium", color: 1 },
+      { pct: 75.7, verses: "v10–37", label: "Large scope", color: 2 },
     ],
   },
   {
-    name: "Dalai Lama — relative vs ultimate bodhicitta",
-    src: "explicit at v22",
+    name: "Dalai Lama",
+    src: "relative vs ultimate bodhicitta",
     tab: "bodhicitta" as TabId,
     segments: [
-      { pct: 56.8, label: "relative bodhicitta v1–21", color: 3 },
-      { pct: 43.2, label: "absolute bodhicitta / shunyata v22–37", color: 4 },
+      { pct: 56.8, verses: "v1–21", label: "Relative bodhicitta", color: 3 },
+      { pct: 43.2, verses: "v22–37", label: "Absolute bodhicitta", color: 4 },
     ],
   },
   {
-    name: "Dalai Lama — space-like vs illusion-like",
-    src: "subdivision of ultimate section",
+    name: "Dalai Lama",
+    src: "space-like vs illusion-like",
     tab: "bodhicitta" as TabId,
     segments: [
-      { pct: 56.8, label: "relative v1–21", color: 5 },
-      { pct: 2.7, label: "v22", color: 4 },
-      { pct: 5.4, label: "v23–24", color: 3 },
-      { pct: 35.1, label: "paramitas + conduct v25–37", color: 2 },
+      { pct: 56.8, verses: "v1–21", label: "Relative", color: 5 },
+      { pct: 2.7, verses: "v22", label: "View", color: 4 },
+      { pct: 5.4, verses: "v23–24", label: "Illusion-like", color: 3 },
+      { pct: 35.1, verses: "v25–37", label: "Paramitas + conduct", color: 2 },
     ],
   },
   {
-    name: "Lojong reading — Dilgo Khyentse, Jampa Tegchok",
-    src: "adversity as core",
+    name: "Lojong reading",
+    src: "Dilgo Khyentse, Jampa Tegchok",
     tab: "lojong" as TabId,
     segments: [
-      { pct: 24.3, label: "ground v1–9", color: 0 },
-      { pct: 10.8, label: "aspiration v10–13", color: 1 },
-      { pct: 24.3, label: "mind training v14–22 ← center", color: 6 },
-      { pct: 21.6, label: "paramitas v23–30", color: 2 },
-      { pct: 18.9, label: "conduct + ded. v31–37", color: 4 },
+      { pct: 24.3, verses: "v1–9", label: "Ground", color: 0 },
+      { pct: 10.8, verses: "v10–13", label: "Aspiration", color: 1 },
+      { pct: 24.3, verses: "v14–22", label: "Mind training ←", color: 6 },
+      { pct: 21.6, verses: "v23–30", label: "Paramitas", color: 2 },
+      { pct: 18.9, verses: "v31–37", label: "Conduct + ded.", color: 4 },
     ],
   },
   {
-    name: "Paramita reading — Sonam Rinchen, Khenpo Tsultrim Gyamtso",
-    src: "six perfections as spine",
+    name: "Paramita reading",
+    src: "Sonam Rinchen, Khenpo Tsultrim Gyamtso",
     tab: "paramita" as TabId,
     segments: [
-      { pct: 24.3, label: "renunciation v1–9", color: 0 },
-      { pct: 35.1, label: "two bodhicittas v10–22", color: 1 },
-      { pct: 21.6, label: "six paramitas v23–30 ← center", color: 7 },
-      { pct: 18.9, label: "integration v31–37", color: 4 },
+      { pct: 24.3, verses: "v1–9", label: "Renunciation", color: 0 },
+      { pct: 35.1, verses: "v10–22", label: "Two bodhicittas", color: 1 },
+      { pct: 21.6, verses: "v23–30", label: "Six paramitas ←", color: 7 },
+      { pct: 18.9, verses: "v31–37", label: "Integration", color: 4 },
     ],
   },
   {
-    name: "Karmapa (Ogyen Trinley Dorje) — view-ground-path-fruition",
-    src: "Kagyu framing",
+    name: "Karmapa",
+    src: "Ogyen Trinley Dorje · view-ground-path-fruition",
     tab: "grid" as TabId,
     segments: [
-      { pct: 18.9, label: "ground v1–7", color: 0 },
-      { pct: 40.5, label: "path: relative bodhicitta v8–21", color: 3 },
-      { pct: 2.7, label: "v22", color: 4 },
-      { pct: 24.3, label: "path: ultimate v23–34", color: 2 },
-      { pct: 13.5, label: "fruition v35–37", color: 5 },
+      { pct: 18.9, verses: "v1–7", label: "Ground", color: 0 },
+      { pct: 40.5, verses: "v8–21", label: "Path: relative", color: 3 },
+      { pct: 2.7, verses: "v22", label: "View", color: 4 },
+      { pct: 24.3, verses: "v23–34", label: "Path: ultimate", color: 2 },
+      { pct: 13.5, verses: "v35–37", label: "Fruition", color: 5 },
     ],
   },
   {
-    name: "Garchen Rinpoche — bodhicitta as organizing spine",
-    src: "Arizona retreat 2020 — transmission-first approach",
+    name: "Garchen Rinpoche",
+    src: "bodhicitta as organizing spine",
     tab: "garchen" as TabId,
     segments: [
-      { pct: 24.3, label: "foundation v1–9", color: 0 },
-      { pct: 29.7, label: "aspiration bodhicitta v10–18", color: 3 },
-      { pct: 18.9, label: "bodhicitta in action v19–24", color: 2 },
-      { pct: 18.9, label: "paramitas v25–30", color: 7 },
-      { pct: 8.1, label: "dedication v31–37", color: 4 },
+      { pct: 24.3, verses: "v1–9", label: "Foundation", color: 0 },
+      { pct: 29.7, verses: "v10–18", label: "Aspiration bodhicitta", color: 3 },
+      { pct: 18.9, verses: "v19–24", label: "Bodhicitta in action", color: 2 },
+      { pct: 18.9, verses: "v25–30", label: "Paramitas", color: 7 },
+      { pct: 8.1, verses: "v31–37", label: "Dedication", color: 4 },
     ],
   },
 ];
 
 const COLORS = [
-  { bg: "#EAF0F4", fg: "#2A4A5E" },
-  { bg: "#E8EEF8", fg: "#243A6B" },
-  { bg: "#EDE8F8", fg: "#3C2E7A" },
-  { bg: "#F5EAE3", fg: "#6B2D0F" },
-  { bg: "#F5EDDA", fg: "#5A3306" },
-  { bg: "#EDEBE3", fg: "#3D3C35" },
-  { bg: "#F5E8E8", fg: "#6B1F1F" },
-  { bg: "#E8F0E3", fg: "#274A0F" },
+  { bg: "#E8EEF5", fg: "#243A6B" },  // slate
+  { bg: "#ECE8F5", fg: "#3C2A72" },  // violet
+  { bg: "#EDE8F0", fg: "#3C2E62" },  // plum
+  { bg: "#F5EAE3", fg: "#6B2D0F" },  // sienna
+  { bg: "#F5F0E3", fg: "#5A4010" },  // amber
+  { bg: "#E8EDE8", fg: "#2A4A2A" },  // sage
+  { bg: "#F5E8E8", fg: "#6B1F1F" },  // rose
+  { bg: "#E8F0E8", fg: "#1F4A2A" },  // forest
 ];
 
 function PivotCard({ title, children }: { title: string; children: React.ReactNode }) {
@@ -163,13 +163,32 @@ export default function StructuralFrameworks() {
   return (
     <div>
       {/* Tab bar */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "0.5rem 1.25rem", marginBottom: "1.75rem" }}>
+      <div style={{
+        display: "flex",
+        flexWrap: "wrap",
+        gap: "0",
+        marginBottom: "2rem",
+        borderBottom: "1px solid var(--border-hairline)",
+      }}>
         {TABS.map((tab) => (
           <button
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             className="small-caps"
-            style={{ fontFamily: "var(--font-serif)", fontSize: "0.68rem", letterSpacing: "0.1em", background: "none", border: "none", cursor: "pointer", padding: 0, color: activeTab === tab.id ? "var(--accent)" : "var(--muted)", textDecoration: activeTab === tab.id ? "underline" : "none", textUnderlineOffset: "3px" }}
+            style={{
+              fontFamily: "var(--font-serif)",
+              fontSize: "0.65rem",
+              letterSpacing: "0.1em",
+              background: "none",
+              border: "none",
+              borderBottom: activeTab === tab.id ? "1.5px solid var(--ink)" : "1.5px solid transparent",
+              cursor: "pointer",
+              padding: "0.5rem 0.85rem 0.5rem 0",
+              marginBottom: "-1px",
+              color: activeTab === tab.id ? "var(--ink)" : "var(--muted)",
+              transition: "color 0.15s",
+              fontWeight: activeTab === tab.id ? 600 : 400,
+            }}
           >
             {tab.label}
           </button>
@@ -179,33 +198,229 @@ export default function StructuralFrameworks() {
       {/* ── GRID VIEW ── */}
       {activeTab === "grid" && (
         <div>
-          <p style={{ fontFamily: "var(--font-mono)", fontSize: "0.6rem", color: "var(--muted)", letterSpacing: "0.04em", marginBottom: "1.25rem" }}>
-            v1 ←————————————————————————————→ v37 &nbsp;·&nbsp; width proportional to verse count · click any bar to read that framework
+          {/* Intro line */}
+          <p style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.58rem",
+            color: "var(--muted)",
+            letterSpacing: "0.04em",
+            marginBottom: "1.5rem",
+            opacity: 0.7,
+          }}>
+            Each bar spans v1 to v37 proportionally. Click any row to read that framework in depth. The pivot at v22 is where most frameworks diverge.
           </p>
-          {FRAMEWORKS.map((fw, fi) => (
-            <div key={fi} style={{ marginBottom: "1.25rem" }}>
-              <div style={{ fontFamily: "var(--font-serif)", fontSize: "0.8rem", color: "var(--ink)", marginBottom: "0.35rem", display: "flex", alignItems: "baseline", gap: "0.5rem", flexWrap: "wrap" }}>
-                <span style={{ fontWeight: 500 }}>{fw.name}</span>
-                <span className="small-caps" style={{ fontSize: "0.62rem", color: "var(--muted)", letterSpacing: "0.07em" }}>{fw.src}</span>
-              </div>
-              <div
-                style={{ display: "flex", gap: "2px", height: "2rem", cursor: fw.tab !== "grid" ? "pointer" : "default" }}
-                onClick={() => fw.tab !== "grid" && setActiveTab(fw.tab)}
-              >
-                {fw.segments.map((seg, si) => {
-                  const c = COLORS[seg.color];
-                  return (
-                    <div key={si} style={{ width: `${seg.pct}%`, background: c.bg, borderRadius: "3px", display: "flex", alignItems: "center", justifyContent: "center", overflow: "hidden", flexShrink: 0 }}>
-                      <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.55rem", color: c.fg, padding: "0 4px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>
-                        {seg.label}
-                      </span>
-                    </div>
-                  );
-                })}
-              </div>
+
+          {/* Verse ruler */}
+          <div style={{ display: "flex", marginBottom: "1.5rem" }}>
+            {/* Name column spacer */}
+            <div style={{ flexShrink: 0, width: "9rem" }} />
+            {/* Ruler */}
+            <div style={{ flex: 1, position: "relative", height: "2rem" }}>
+              {/* Baseline */}
+              <div style={{
+                position: "absolute",
+                bottom: 0,
+                left: 0,
+                right: 0,
+                height: "1px",
+                background: "var(--border-hairline)",
+              }} />
+              {/* Tick marks at key verses */}
+              {[
+                { v: 1, label: "v1" },
+                { v: 9, label: "v9" },
+                { v: 10, label: "v10" },
+                { v: 22, label: "v22", accent: true },
+                { v: 25, label: "v25" },
+                { v: 31, label: "v31" },
+                { v: 37, label: "v37" },
+              ].map(({ v, label, accent }) => {
+                const pct = ((v - 1) / 36) * 100;
+                return (
+                  <div
+                    key={v}
+                    style={{
+                      position: "absolute",
+                      left: `${pct}%`,
+                      bottom: 0,
+                      transform: "translateX(-50%)",
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.52rem",
+                      color: accent ? "var(--accent)" : "var(--muted)",
+                      opacity: accent ? 1 : 0.55,
+                      marginBottom: "3px",
+                      fontWeight: accent ? 600 : 400,
+                    }}>
+                      {label}
+                    </span>
+                    <div style={{
+                      width: accent ? "2px" : "1px",
+                      height: accent ? "8px" : "5px",
+                      background: accent ? "var(--accent)" : "var(--border-hairline)",
+                    }} />
+                  </div>
+                );
+              })}
             </div>
-          ))}
-          <p style={{ fontFamily: "var(--font-serif)", fontSize: "0.8rem", fontStyle: "italic", color: "var(--muted)", marginTop: "0.75rem" }}>
+          </div>
+
+          {/* Framework rows */}
+          {FRAMEWORKS.map((fw, fi) => {
+            const canNavigate = fw.tab !== "grid";
+            // v22 position as a percentage across the bar area
+            const v22pct = (21 / 36) * 100;
+            return (
+              <div
+                key={fi}
+                onClick={() => canNavigate && setActiveTab(fw.tab)}
+                style={{
+                  display: "flex",
+                  alignItems: "stretch",
+                  marginBottom: "0.85rem",
+                  cursor: canNavigate ? "pointer" : "default",
+                  borderRadius: "4px",
+                  padding: "0.5rem 0",
+                }}
+                className={canNavigate ? "framework-row" : ""}
+              >
+                {/* Name column */}
+                <div style={{
+                  flexShrink: 0,
+                  width: "9rem",
+                  paddingRight: "0.75rem",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                }}>
+                  <span style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "0.78rem",
+                    fontWeight: 500,
+                    color: "var(--ink)",
+                    lineHeight: 1.3,
+                    display: "block",
+                  }}>
+                    {fw.name}
+                  </span>
+                  <span style={{
+                    fontFamily: "var(--font-serif)",
+                    fontSize: "0.65rem",
+                    fontStyle: "italic",
+                    color: "var(--muted)",
+                    lineHeight: 1.3,
+                    display: "block",
+                    marginTop: "1px",
+                  }}>
+                    {fw.src}
+                  </span>
+                </div>
+
+                {/* Bar column */}
+                <div style={{ flex: 1, position: "relative" }}>
+                  {/* v22 vertical guide line */}
+                  <div style={{
+                    position: "absolute",
+                    left: `${v22pct}%`,
+                    top: 0,
+                    bottom: 0,
+                    width: "1px",
+                    background: "var(--accent)",
+                    opacity: 0.15,
+                    zIndex: 2,
+                    pointerEvents: "none",
+                  }} />
+
+                  {/* Segments */}
+                  <div style={{ display: "flex", gap: "2px", height: "52px" }}>
+                    {fw.segments.map((seg, si) => {
+                      const c = COLORS[seg.color];
+                      return (
+                        <div
+                          key={si}
+                          style={{
+                            flex: `0 0 calc(${seg.pct}% - 1px)`,
+                            background: c.bg,
+                            borderRadius: "3px",
+                            display: "flex",
+                            flexDirection: "column",
+                            justifyContent: "center",
+                            padding: "0 6px",
+                            overflow: "hidden",
+                            minWidth: 0,
+                          }}
+                        >
+                          {/* Verse range */}
+                          <span style={{
+                            fontFamily: "var(--font-mono)",
+                            fontSize: "0.5rem",
+                            color: c.fg,
+                            opacity: 0.75,
+                            letterSpacing: "0.02em",
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "clip",
+                            display: "block",
+                          }}>
+                            {seg.verses}
+                          </span>
+                          {/* Section label */}
+                          <span style={{
+                            fontFamily: "var(--font-serif)",
+                            fontSize: "0.58rem",
+                            color: c.fg,
+                            fontWeight: 500,
+                            whiteSpace: "nowrap",
+                            overflow: "hidden",
+                            textOverflow: "ellipsis",
+                            display: "block",
+                            marginTop: "2px",
+                          }}>
+                            {seg.label}
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Navigate hint */}
+                {canNavigate && (
+                  <div style={{
+                    flexShrink: 0,
+                    width: "1.5rem",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-end",
+                  }}>
+                    <span style={{
+                      fontFamily: "var(--font-mono)",
+                      fontSize: "0.55rem",
+                      color: "var(--muted)",
+                      opacity: 0.4,
+                    }}>
+                      →
+                    </span>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+
+          {/* Footer note */}
+          <p style={{
+            fontFamily: "var(--font-serif)",
+            fontSize: "0.8rem",
+            fontStyle: "italic",
+            color: "var(--muted)",
+            marginTop: "1.5rem",
+            lineHeight: 1.7,
+          }}>
             Each framework is a structural claim made explicitly by the teacher, or traceable from their commentary. None of them is a scholarly projection. The disagreements between them are worth sitting with.
           </p>
         </div>

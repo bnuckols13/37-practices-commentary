@@ -100,3 +100,13 @@ mark {
   pointer-events: none;
   z-index: 0;
 }
+
+/* Framework grid row hover */
+.framework-row:hover .framework-name {
+  color: var(--accent);
+}
+
+/* Smooth transitions site-wide */
+a, button {
+  transition: color 0.15s, opacity 0.15s, border-color 0.15s;
+}
