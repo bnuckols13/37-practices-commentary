@@ -7,5 +7,17 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
+| #879 | 5:54 PM | 🟣 | Khenpo tab enriched with three programmatically-extracted transcript quotes | ~428 |
+| #873 | 5:44 PM | 🟣 | Structural frameworks analysis page added with transcript-backed insights | ~731 |
+| #858 | 3:26 PM | 🔴 | Navigation DOM order fixed and deployed | ~270 |
 | #821 | 11:55 AM | 🟣 | Interactive Transcript Viewer Component | ~511 |
+
+### Apr 2, 2026
+
+| ID | Time | T | Title | Read |
+|----|------|---|-------|------|
+| #935 | 10:54 AM | ✅ | Expanded page layout and improved frameworks grid legibility | ~340 |
+| #908 | 10:09 AM | ✅ | Punctuation refinement in Garchen tab | ~170 |
+| #906 | 10:08 AM | ✅ | Replaced em dash with period for clearer sentence structure | ~266 |
+| #887 | 10:03 AM | ✅ | Khenpo biographical quote prose refined | ~318 |
 </claude-mem-context>

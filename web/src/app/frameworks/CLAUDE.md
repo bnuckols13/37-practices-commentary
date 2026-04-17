@@ -7,12 +7,11 @@
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #822 | 11:56 AM | 🟣 | Analytical Meditation Toolkit Page | ~716 |
+| #873 | 5:44 PM | 🟣 | Structural frameworks analysis page added with transcript-backed insights | ~731 |
 
 ### Apr 2, 2026
 
 | ID | Time | T | Title | Read |
 |----|------|---|-------|------|
-| #935 | 10:54 AM | ✅ | Expanded page layout and improved frameworks grid legibility | ~340 |
-| #914 | 10:11 AM | ✅ | Continued em dash to period conversion in toolkit meditation instructions | ~273 |
+| #897 | 10:04 AM | ✅ | Revised frameworks page prose for directness and clarity | ~363 |
 </claude-mem-context>

@@ -15,105 +15,112 @@ const TABS: { id: TabId; label: string }[] = [
   { id: "garchen", label: "Garchen Rinpoche" },
 ];
 
-const FRAMEWORKS = [
+type Section = { from: number; to: number; label: string };
+type Framework = { name: string; src: string; tab: TabId; sections: Section[] };
+
+const FRAMEWORKS: Framework[] = [
   {
     name: "Khenpo Sherab Sangpo",
     src: "three-part structure",
-    tab: "khenpo" as TabId,
-    segments: [
-      { pct: 29.7, verses: "v1–11", label: "Preliminary", color: 0 },
-      { pct: 51.4, verses: "v12–30", label: "Main practices", color: 2 },
-      { pct: 18.9, verses: "v31–37", label: "Integration", color: 4 },
+    tab: "khenpo",
+    sections: [
+      { from: 1, to: 11, label: "Preliminary" },
+      { from: 12, to: 30, label: "Main practices" },
+      { from: 31, to: 37, label: "Integration" },
     ],
   },
   {
     name: "Dalai Lama",
     src: "lam-rim three scopes",
-    tab: "dalailama" as TabId,
-    segments: [
-      { pct: 21.6, verses: "v1–8", label: "Small scope", color: 0 },
-      { pct: 2.7, verses: "v9", label: "Medium", color: 1 },
-      { pct: 75.7, verses: "v10–37", label: "Large scope", color: 2 },
+    tab: "dalailama",
+    sections: [
+      { from: 1, to: 8, label: "Small scope" },
+      { from: 9, to: 9, label: "Medium scope" },
+      { from: 10, to: 37, label: "Large scope" },
     ],
   },
   {
     name: "Dalai Lama",
     src: "relative vs ultimate bodhicitta",
-    tab: "bodhicitta" as TabId,
-    segments: [
-      { pct: 56.8, verses: "v1–21", label: "Relative bodhicitta", color: 3 },
-      { pct: 43.2, verses: "v22–37", label: "Absolute bodhicitta", color: 4 },
+    tab: "bodhicitta",
+    sections: [
+      { from: 1, to: 21, label: "Relative bodhicitta" },
+      { from: 22, to: 37, label: "Absolute bodhicitta" },
     ],
   },
   {
     name: "Dalai Lama",
     src: "space-like vs illusion-like",
-    tab: "bodhicitta" as TabId,
-    segments: [
-      { pct: 56.8, verses: "v1–21", label: "Relative", color: 5 },
-      { pct: 2.7, verses: "v22", label: "View", color: 4 },
-      { pct: 5.4, verses: "v23–24", label: "Illusion-like", color: 3 },
-      { pct: 35.1, verses: "v25–37", label: "Paramitas + conduct", color: 2 },
+    tab: "bodhicitta",
+    sections: [
+      { from: 1, to: 21, label: "Relative" },
+      { from: 22, to: 22, label: "View" },
+      { from: 23, to: 24, label: "Illusion-like" },
+      { from: 25, to: 37, label: "Paramitas + conduct" },
     ],
   },
   {
     name: "Lojong reading",
     src: "Dilgo Khyentse, Jampa Tegchok",
-    tab: "lojong" as TabId,
-    segments: [
-      { pct: 24.3, verses: "v1–9", label: "Ground", color: 0 },
-      { pct: 10.8, verses: "v10–13", label: "Aspiration", color: 1 },
-      { pct: 24.3, verses: "v14–22", label: "Mind training ←", color: 6 },
-      { pct: 21.6, verses: "v23–30", label: "Paramitas", color: 2 },
-      { pct: 18.9, verses: "v31–37", label: "Conduct + ded.", color: 4 },
+    tab: "lojong",
+    sections: [
+      { from: 1, to: 9, label: "Ground" },
+      { from: 10, to: 13, label: "Aspiration" },
+      { from: 14, to: 22, label: "Mind training" },
+      { from: 23, to: 30, label: "Paramitas" },
+      { from: 31, to: 37, label: "Conduct" },
     ],
   },
   {
     name: "Paramita reading",
     src: "Sonam Rinchen, Khenpo Tsultrim Gyamtso",
-    tab: "paramita" as TabId,
-    segments: [
-      { pct: 24.3, verses: "v1–9", label: "Renunciation", color: 0 },
-      { pct: 35.1, verses: "v10–22", label: "Two bodhicittas", color: 1 },
-      { pct: 21.6, verses: "v23–30", label: "Six paramitas ←", color: 7 },
-      { pct: 18.9, verses: "v31–37", label: "Integration", color: 4 },
+    tab: "paramita",
+    sections: [
+      { from: 1, to: 9, label: "Renunciation" },
+      { from: 10, to: 22, label: "Two bodhicittas" },
+      { from: 23, to: 30, label: "Six paramitas" },
+      { from: 31, to: 37, label: "Integration" },
     ],
   },
   {
     name: "Karmapa",
-    src: "Ogyen Trinley Dorje · view-ground-path-fruition",
-    tab: "grid" as TabId,
-    segments: [
-      { pct: 18.9, verses: "v1–7", label: "Ground", color: 0 },
-      { pct: 40.5, verses: "v8–21", label: "Path: relative", color: 3 },
-      { pct: 2.7, verses: "v22", label: "View", color: 4 },
-      { pct: 24.3, verses: "v23–34", label: "Path: ultimate", color: 2 },
-      { pct: 13.5, verses: "v35–37", label: "Fruition", color: 5 },
+    src: "Ogyen Trinley Dorje",
+    tab: "grid",
+    sections: [
+      { from: 1, to: 7, label: "Ground" },
+      { from: 8, to: 21, label: "Path: relative" },
+      { from: 22, to: 22, label: "View" },
+      { from: 23, to: 34, label: "Path: ultimate" },
+      { from: 35, to: 37, label: "Fruition" },
     ],
   },
   {
     name: "Garchen Rinpoche",
     src: "bodhicitta as organizing spine",
-    tab: "garchen" as TabId,
-    segments: [
-      { pct: 24.3, verses: "v1–9", label: "Foundation", color: 0 },
-      { pct: 29.7, verses: "v10–18", label: "Aspiration bodhicitta", color: 3 },
-      { pct: 18.9, verses: "v19–24", label: "Bodhicitta in action", color: 2 },
-      { pct: 18.9, verses: "v25–30", label: "Paramitas", color: 7 },
-      { pct: 8.1, verses: "v31–37", label: "Dedication", color: 4 },
+    tab: "garchen",
+    sections: [
+      { from: 1, to: 9, label: "Foundation" },
+      { from: 10, to: 18, label: "Aspiration bodhicitta" },
+      { from: 19, to: 24, label: "Bodhicitta in action" },
+      { from: 25, to: 30, label: "Paramitas" },
+      { from: 31, to: 37, label: "Dedication" },
     ],
   },
 ];
 
-const COLORS = [
-  { bg: "#E8EEF5", fg: "#243A6B" },  // slate
-  { bg: "#ECE8F5", fg: "#3C2A72" },  // violet
-  { bg: "#EDE8F0", fg: "#3C2E62" },  // plum
-  { bg: "#F5EAE3", fg: "#6B2D0F" },  // sienna
-  { bg: "#F5F0E3", fg: "#5A4010" },  // amber
-  { bg: "#E8EDE8", fg: "#2A4A2A" },  // sage
-  { bg: "#F5E8E8", fg: "#6B1F1F" },  // rose
-  { bg: "#E8F0E8", fg: "#1F4A2A" },  // forest
+// Map verse number → section index for a given framework
+function buildVerseMap(sections: Section[]): number[] {
+  const map = new Array(38).fill(-1);
+  sections.forEach((sec, si) => {
+    for (let v = sec.from; v <= sec.to; v++) map[v] = si;
+  });
+  return map;
+}
+
+// Alternating monochrome shades — even sections lighter, odd sections darker
+const SECTION_SHADES = [
+  "rgba(28,24,17,0.045)",
+  "rgba(28,24,17,0.12)",
 ];
 
 function PivotCard({ title, children }: { title: string; children: React.ReactNode }) {
@@ -198,216 +205,152 @@ export default function StructuralFrameworks() {
       {/* ── GRID VIEW ── */}
       {activeTab === "grid" && (
         <div>
-          {/* Intro line */}
-          <p style={{
-            fontFamily: "var(--font-mono)",
-            fontSize: "0.58rem",
-            color: "var(--muted)",
-            letterSpacing: "0.04em",
-            marginBottom: "1.5rem",
-            opacity: 0.7,
-          }}>
-            Each bar spans v1 to v37 proportionally. Click any row to read that framework in depth. The pivot at v22 is where most frameworks diverge.
-          </p>
-
-          {/* Verse ruler */}
-          <div style={{ display: "flex", marginBottom: "1.5rem" }}>
-            {/* Name column spacer */}
-            <div style={{ flexShrink: 0, width: "7rem" }} />
-            {/* Ruler */}
-            <div style={{ flex: 1, position: "relative", height: "2rem" }}>
-              {/* Baseline */}
-              <div style={{
-                position: "absolute",
-                bottom: 0,
-                left: 0,
-                right: 0,
-                height: "1px",
-                background: "var(--border-hairline)",
-              }} />
-              {/* Tick marks at key verses */}
-              {[
-                { v: 1, label: "v1" },
-                { v: 9, label: "v9" },
-                { v: 10, label: "v10" },
-                { v: 22, label: "v22", accent: true },
-                { v: 25, label: "v25" },
-                { v: 31, label: "v31" },
-                { v: 37, label: "v37" },
-              ].map(({ v, label, accent }) => {
-                const pct = ((v - 1) / 36) * 100;
-                return (
+          {/* Verse number header */}
+          <div style={{ display: "flex", alignItems: "flex-end", marginBottom: "0.5rem" }}>
+            <div style={{ flexShrink: 0, width: "9rem" }} />
+            <div style={{ flex: 1, overflowX: "auto" }}>
+              <div style={{ display: "flex", minWidth: "460px" }}>
+                {Array.from({ length: 37 }, (_, i) => i + 1).map((v) => (
                   <div
                     key={v}
                     style={{
-                      position: "absolute",
-                      left: `${pct}%`,
-                      bottom: 0,
-                      transform: "translateX(-50%)",
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "center",
+                      flex: "1 1 0",
+                      textAlign: "center",
+                      fontFamily: "var(--font-mono)",
+                      fontSize: v === 22 ? "0.48rem" : "0.38rem",
+                      color: v === 22 ? "var(--accent)" : "var(--muted)",
+                      opacity: v === 22 ? 1 : (v % 5 === 0 || v === 1 || v === 37 ? 0.6 : 0.2),
+                      fontWeight: v === 22 ? 700 : 400,
+                      paddingBottom: "3px",
+                      lineHeight: 1,
                     }}
                   >
-                    <span style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.52rem",
-                      color: accent ? "var(--accent)" : "var(--muted)",
-                      opacity: accent ? 1 : 0.55,
-                      marginBottom: "3px",
-                      fontWeight: accent ? 600 : 400,
-                    }}>
-                      {label}
-                    </span>
-                    <div style={{
-                      width: accent ? "2px" : "1px",
-                      height: accent ? "8px" : "5px",
-                      background: accent ? "var(--accent)" : "var(--border-hairline)",
-                    }} />
+                    {v === 22 ? "22" : (v % 5 === 0 || v === 1 || v === 37 ? v : "·")}
                   </div>
-                );
-              })}
+                ))}
+              </div>
             </div>
           </div>
 
           {/* Framework rows */}
           {FRAMEWORKS.map((fw, fi) => {
             const canNavigate = fw.tab !== "grid";
-            // v22 position as a percentage across the bar area
-            const v22pct = (21 / 36) * 100;
+            const verseMap = buildVerseMap(fw.sections);
             return (
               <div
                 key={fi}
-                onClick={() => canNavigate && setActiveTab(fw.tab)}
-                style={{
-                  display: "flex",
-                  alignItems: "stretch",
-                  marginBottom: "0.85rem",
-                  cursor: canNavigate ? "pointer" : "default",
-                  borderRadius: "4px",
-                  padding: "0.5rem 0",
-                }}
-                className={canNavigate ? "framework-row" : ""}
+                style={{ marginBottom: "1.25rem" }}
               >
-                {/* Name column */}
-                <div style={{
-                  flexShrink: 0,
-                  width: "7rem",
-                  paddingRight: "0.75rem",
-                  display: "flex",
-                  flexDirection: "column",
-                  justifyContent: "center",
-                }}>
-                  <span style={{
-                    fontFamily: "var(--font-serif)",
-                    fontSize: "0.72rem",
-                    fontWeight: 500,
-                    color: "var(--ink)",
-                    lineHeight: 1.25,
-                    display: "block",
-                  }}>
-                    {fw.name}
-                  </span>
-                  <span style={{
-                    fontFamily: "var(--font-serif)",
-                    fontSize: "0.6rem",
-                    fontStyle: "italic",
-                    color: "var(--muted)",
-                    lineHeight: 1.3,
-                    display: "block",
-                    marginTop: "2px",
-                  }}>
-                    {fw.src}
-                  </span>
-                </div>
-
-                {/* Bar column */}
-                <div style={{ flex: 1, position: "relative" }}>
-                  {/* v22 vertical guide line */}
-                  <div style={{
-                    position: "absolute",
-                    left: `${v22pct}%`,
-                    top: 0,
-                    bottom: 0,
-                    width: "1px",
-                    background: "var(--accent)",
-                    opacity: 0.15,
-                    zIndex: 2,
-                    pointerEvents: "none",
-                  }} />
-
-                  {/* Segments */}
-                  <div style={{ display: "flex", gap: "3px", height: "58px" }}>
-                    {fw.segments.map((seg, si) => {
-                      const c = COLORS[seg.color];
-                      return (
-                        <div
-                          key={si}
-                          style={{
-                            flex: `0 0 calc(${seg.pct}% - 1.5px)`,
-                            background: c.bg,
-                            borderRadius: "4px",
-                            display: "flex",
-                            flexDirection: "column",
-                            justifyContent: "center",
-                            padding: "0 8px",
-                            overflow: "hidden",
-                            minWidth: 0,
-                          }}
-                        >
-                          {/* Verse range */}
-                          <span style={{
-                            fontFamily: "var(--font-mono)",
-                            fontSize: "0.5rem",
-                            color: c.fg,
-                            opacity: 0.65,
-                            letterSpacing: "0.02em",
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "clip",
-                            display: "block",
-                          }}>
-                            {seg.verses}
-                          </span>
-                          {/* Section label */}
-                          <span style={{
-                            fontFamily: "var(--font-serif)",
-                            fontSize: "0.65rem",
-                            color: c.fg,
-                            fontWeight: 500,
-                            whiteSpace: "nowrap",
-                            overflow: "hidden",
-                            textOverflow: "ellipsis",
-                            display: "block",
-                            marginTop: "2px",
-                          }}>
-                            {seg.label}
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                </div>
-
-                {/* Navigate hint */}
-                {canNavigate && (
+                {/* Row: name + cells */}
+                <div
+                  onClick={() => canNavigate && setActiveTab(fw.tab)}
+                  style={{
+                    display: "flex",
+                    alignItems: "stretch",
+                    cursor: canNavigate ? "pointer" : "default",
+                  }}
+                  className={canNavigate ? "framework-row" : ""}
+                >
+                  {/* Name column */}
                   <div style={{
                     flexShrink: 0,
-                    width: "1.5rem",
+                    width: "9rem",
+                    paddingRight: "0.75rem",
                     display: "flex",
-                    alignItems: "center",
-                    justifyContent: "flex-end",
+                    flexDirection: "column",
+                    justifyContent: "center",
                   }}>
+                    <span
+                      className="framework-name"
+                      style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "0.72rem",
+                        fontWeight: 500,
+                        color: "var(--ink)",
+                        lineHeight: 1.25,
+                        display: "block",
+                      }}
+                    >
+                      {fw.name}
+                      {canNavigate && (
+                        <span style={{ fontFamily: "var(--font-mono)", fontSize: "0.5rem", color: "var(--muted)", opacity: 0.35, marginLeft: "0.35rem" }}>→</span>
+                      )}
+                    </span>
                     <span style={{
-                      fontFamily: "var(--font-mono)",
-                      fontSize: "0.55rem",
+                      fontFamily: "var(--font-serif)",
+                      fontSize: "0.58rem",
+                      fontStyle: "italic",
                       color: "var(--muted)",
-                      opacity: 0.4,
+                      lineHeight: 1.3,
+                      display: "block",
+                      marginTop: "2px",
                     }}>
-                      →
+                      {fw.src}
                     </span>
                   </div>
-                )}
+
+                  {/* Cell grid */}
+                  <div style={{ flex: 1, overflowX: "auto" }}>
+                    <div style={{ display: "flex", height: "32px", minWidth: "460px" }}>
+                      {Array.from({ length: 37 }, (_, i) => i + 1).map((v) => {
+                        const si = verseMap[v];
+                        const shade = si >= 0 ? SECTION_SHADES[si % 2] : "transparent";
+                        const isV22 = v === 22;
+                        const isFirstInSection = si >= 0 && (v === fw.sections[si].from);
+                        return (
+                          <div
+                            key={v}
+                            style={{
+                              flex: "1 1 0",
+                              height: "100%",
+                              background: isV22 ? "rgba(139,69,19,0.08)" : shade,
+                              borderLeft: isFirstInSection && v !== 1 ? "1px solid rgba(28,24,17,0.18)" : "none",
+                              boxShadow: isV22 ? "inset 0 0 0 1px rgba(139,69,19,0.18)" : "none",
+                            }}
+                          />
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Section legend */}
+                <div style={{
+                  display: "flex",
+                  flexWrap: "wrap",
+                  gap: "0.6rem 1rem",
+                  marginTop: "0.4rem",
+                  paddingLeft: "9rem",
+                }}>
+                  {fw.sections.map((sec, si) => (
+                    <span key={si} style={{ display: "flex", alignItems: "center", gap: "0.3rem" }}>
+                      <span style={{
+                        display: "inline-block",
+                        width: "8px",
+                        height: "8px",
+                        background: SECTION_SHADES[si % 2],
+                        border: "1px solid rgba(28,24,17,0.15)",
+                        borderRadius: "1px",
+                        flexShrink: 0,
+                      }} />
+                      <span style={{
+                        fontFamily: "var(--font-mono)",
+                        fontSize: "0.5rem",
+                        color: "var(--muted)",
+                        letterSpacing: "0.02em",
+                      }}>
+                        v{sec.from}{sec.from !== sec.to ? `–${sec.to}` : ""}&nbsp;
+                      </span>
+                      <span style={{
+                        fontFamily: "var(--font-serif)",
+                        fontSize: "0.62rem",
+                        color: "var(--muted)",
+                      }}>
+                        {sec.label}
+                      </span>
+                    </span>
+                  ))}
+                </div>
               </div>
             );
           })}
@@ -419,6 +362,8 @@ export default function StructuralFrameworks() {
             fontStyle: "italic",
             color: "var(--muted)",
             marginTop: "1.5rem",
+            borderTop: "1px solid var(--border-hairline)",
+            paddingTop: "1rem",
             lineHeight: 1.7,
           }}>
             Each framework is a structural claim made explicitly by the teacher, or traceable from their commentary. None of them is a scholarly projection. The disagreements between them are worth sitting with.
